@@ -1,0 +1,46 @@
+body {
+    text-align: center;
+    margin: 0px;
+}
+
+div.login {
+    background-color: lightblue;
+    width: 30%;
+    height: 50vh;
+    display: inline-block;
+}
+
+div.cadastro {
+    margin-top: 10%;
+    background-color: lightblue;
+    width: 35%;
+    height: 40vh;
+    display: inline-block;
+}
+
+#add_func {
+    margin-left: 30vw;
+    width: 40vw;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+#add_prod {
+    margin-left: 30vw;
+    width: 40vw;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+#add_categ {
+    margin-left: 30vw;
+    width: 40vw;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
