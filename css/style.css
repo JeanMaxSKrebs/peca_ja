@@ -1,10 +1,12 @@
 body {
-    text-align: center;
     margin: 0px;
+    /* background-image: linear-gradient(rgb(228, 228, 228), rgb(184, 184, 184)); */
+    width: 100vw;
+    /* height: 150vh; */
 }
 
 div.login {
-    background-color: lightblue;
+    background-image: linear-gradient(rgb(228, 228, 228), rgb(184, 184, 184));
     width: 30%;
     height: 50vh;
     display: inline-block;
@@ -12,35 +14,67 @@ div.login {
 
 div.cadastro {
     margin-top: 10%;
-    background-color: lightblue;
+    background-image: linear-gradient(rgb(228, 228, 228), rgb(184, 184, 184));
     width: 35%;
     height: 40vh;
     display: inline-block;
 }
 
+
+/*modais*/
+
 #add_func {
-    margin-left: 30vw;
-    width: 40vw;
-    height: auto;
-    justify-content: center;
-    align-items: center;
+    text-align: inherit;
+    display: none;
+}
+
+#alter_func {
+    text-align: inherit;
+    display: none;
+}
+
+#delete_func {
+    text-align: inherit;
     display: none;
 }
 
 #add_prod {
-    margin-left: 30vw;
-    width: 40vw;
-    height: auto;
-    justify-content: center;
-    align-items: center;
+    text-align: inherit;
+    display: none;
+}
+
+#alter_prod {
+    text-align: inherit;
+    display: none;
+}
+
+#delete_prod {
+    text-align: inherit;
     display: none;
 }
 
 #add_categ {
-    margin-left: 30vw;
-    width: 40vw;
-    height: auto;
-    justify-content: center;
-    align-items: center;
+    text-align: inherit;
+    display: none;
+}
+
+#alter_categ {
+    text-align: inherit;
+    display: none;
+}
+
+#delete_categ {
+    text-align: inherit;
+    display: none;
+}
+
+
+/* formulario de att */
+
+#attForm_produto {
+    display: none;
+}
+
+#attForm_categoria {
     display: none;
 }

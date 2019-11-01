@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pagina Admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="text-center">
+    <div class="jumbotron container-fluid">
+        <div class="container">
+            <h1>Peça Já</h1>
+            <h2>Gerenciador de Pedidos de Fast-Food Online</h2>
+            <h2>Admin</h2>
+            <a href="index.html"><button class="btn btn-outline-secondary">Início</button></a>
+            <hr>
+            <p>Ultima Ação:</p>
+            <p id="resultado"><b>Resultado</b></p>
+            <hr>
+        </div>
+        <div class="container">
+            <grid class="row">
+                <div id="gridProdutos" class="col">
+                    <button class="btn btn-outline-secondary" onclick="mostraProdutos()">Mostra Produtos</button>
+                    <br><br>
+                    <button class="btn btn-outline-secondary" onclick="mostra_adiciona_produto()">Add Produto</button>
+                    <br><br>
+                    <button class="btn btn-outline-secondary" onclick="mostra_altera_produto()">Altera Produto</button>
+                    <br><br>
+                    <button class="btn btn-outline-secondary" onclick="mostra_deleta_produto()">Deleta Produto</button>
+                    <hr>
+                    <modais>
+                        <div id="add_prod">
+                            <!-- modal insert produtos -->
+                            <form name="insert" method="post" onsubmit="insertProdutosJs()">
+                                <input type="text" name="nome" placeholder="Nome">
+                                <input type="numeric" name="valor" placeholder="Valor"><br><br> Categoria: Almoço 1<input type="radio" name="categoria" value="1" checked> Lanche 2<input type="radio" name="categoria" value="2"><br><br>
+                                <input type="text" name="desconto" placeholder="Desconto"> <br><br>
+                                <input type="submit" name="cadastro_produto" value="Cadastro Produto"><br><br>
+                            </form>
+                            <button class="btn btn-dark" onclick="fecha_adiciona_produto()">Fechar</button>
+                        </div>
+                        <div id="alter_prod">
+                            <!-- modal busca produto alter -->
+                            <form name="alter" onsubmit="alterProdutosJs();mostra_att_produto()" method="post">
+                                <input type="text" name="busca" placeholder="Qual produto editar?"><br><br>
+                                <input type="submit" name="altera_produto" value="Busca Produto Altera">
+                            </form>
+                            <!-- modal alter produtos -->
+                            <form name="att" id="attForm_produto" onsubmit="attProdutosJs()" method="post">
+                                <input type="text" name="nome" placeholder="Nome">
+                                <input type="numeric" name="valor" placeholder="Valor"> <br>
+                                <input type="text" name="desconto" placeholder="Desconto"> Categoria: Almoço 1<input type="radio" name="categoria" value="1" checked> Lanche 2<input type="radio" name="categoria" value="2"><br><br>
+                                <input type="submit" name="att_produto" value="Att Produto">
+                            </form>
+                            <br>
+                            <button class="btn btn-dark" onclick="fecha_altera_produto()">Fechar</button>
+                        </div>
+                        <div id="delete_prod">
+                            <!-- modal delete produtos -->
+                            <form name="delet" method="post" onsubmit="deleteProdutosJs()">
+                                <input type="text" name="nome" placeholder="Qual produto deletar?">
+                            </form>
+                            <br>
+                            <button class="btn btn-dark" onclick="fecha_deleta_produto()">Fechar</button>
+                        </div>
+                    </modais>
+                    <hr>
+                    <br>
+                </div>
+                <div id="gridCategorias" class="col">
+                    <button class="btn btn-outline-secondary" onclick="mostraCategorias()">Mostra Categorias</button>
+                    <br><br>
+                    <button class="btn btn-outline-secondary" onclick="mostra_adiciona_categoria()">Add Categoria</button>
+                    <br><br>
+                    <button class="btn btn-outline-secondary" onclick="mostra_altera_categoria()">Altera Categoria</button>
+                    <br><br>
+                    <button class="btn btn-outline-secondary" onclick="mostra_deleta_categoria()">Deleta Categoria</button>
+                    <hr>
+                    <modais>
+                        <div id="add_categ">
+                            <!-- modal insert categorias -->
+                            <hr><br>
+                            <form name="insert" method="post" onsubmit="insertCategoriasJs()">
+                                <input type="text" name="tipo" placeholder="Categoria" checked> <br><br>
+                                <input type="submit" name="cadastro_categoria" value="Cadastro Categoria">
+                            </form>
+                            <br>
+                            <button class="btn btn-dark" onclick="fecha_adiciona_categoria()">Fechar</button> <br><br>
+                        </div>
+                        <div id="alter_categ">
+                            <!-- modal busca categorias alter -->
+                            <form name="alter" onsubmit="alterCategoriasJs();mostra_att_categoria()" method="post">
+                                <input type="text" name="busca" placeholder="Qual categoria editar?"><br><br>
+                                <input type="submit" name="altera_categoria" value="Busca Categoria Altera">
+                            </form>
+                            <!-- modal alter categorias -->
+                            <form name="att" id="attForm_categoria" onsubmit="attCategoriasJs()" method="post">
+                                <input type="text" name="nome" placeholder="Nome">
+                                <input type="numeric" name="valor" placeholder="Valor"> <br>
+                                <input type="text" name="desconto" placeholder="Desconto"> Categoria: Almoço 1<input type="radio" name="categoria" value="1" checked> Lanche 2<input type="radio" name="categoria" value="2"><br><br>
+                                <input type="submit" name="att_categoria" value="Att categoria">
+                            </form>
+                            <br>
+                            <button class="btn btn-dark" onclick="fecha_altera_categoria()">Fechar</button>
+                        </div>
+                        <div id="delete_categ">
+                            <!-- modal delete categorias -->
+                            <form name="delet" method="post" onsubmit="deleteCategoriasJs()">
+                                <input type="text" name="nome" placeholder="Qual categoria deletar?">
+                            </form>
+                            <br>
+                            <button class="btn btn-dark" onclick="fecha_deleta_categoria()">Fechar</button>
+                        </div>
+                    </modais>
+                    <hr>
+                    <br>
+                </div>
+                <div id="gridFuncionarios" class="col">
+                    <button class="btn btn-outline-secondary" onclick="mostraFuncionarios()">Mostra Funcionários</button>
+                    <br><br>
+                    <button class="btn btn-outline-secondary" onclick="mostra_add_funcionario()">Add Funcionário</button>
+                    <br><br>
+                    <button class="btn btn-outline-secondary" onclick="mostra_altera_funcionario()">Altera Funcionário</button>
+                    <br><br>
+                    <button class="btn btn-outline-secondary" onclick="mostra_deleta_funcionario()">Deleta Funcionário</button>
+                    <hr>
+                    <modais>
+                        <div id="add_func">
+                            <!-- modal insert funcionarios -->
+                            <form name="insert" method="post" onsubmit="insertFuncionariosJs()">
+                                <input type="text" name="nome" placeholder="Nome">
+                                <input type="number" name="cpf" placeholder="CPF"><br><br>
+                                <input type="number" name="salario" placeholder="Salário"><br> Tipo: Comum<input type="radio" name="tipo" checked> Gerente
+                                <input type="radio" name="tipo"><br><br>
+                                <input type="text" name="endereco">
+                                <input type="text" name="login" placeholder="Login">
+                                <input type="password" name="senha" placeholder="Senha"><br><br>
+                                <input type="submit" name="cadastro_funcionario" value="Cadastro Funcionario">
+                            </form>
+                            <button onclick="fecha_add_funcionario()">Fechar</button>
+                        </div>
+                        <div id="alter_func">
+                            <!-- modal busca funcionarios alter -->
+                            <form name="alter" onsubmit="alterFuncionariosJs();mostra_att_funcionario()" method="post">
+                                <input type="text" name="busca" placeholder="Qual funcionário editar?"><br><br>
+                                <input type="submit" name="altera_funcionario" value="Busca Funcionario Altera">
+                            </form>
+                            <!-- modal alter funcionarios -->
+                            <form name="att" id="attForm_funcionario" onsubmit="attFuncionariosJs()" method="post">
+                                <input type="text" name="nome" placeholder="Nome">
+                                <input type="numeric" name="valor" placeholder="Valor"> <br>
+                                <input type="text" name="desconto" placeholder="Desconto"> Funcionário: Almoço 1<input type="radio" name="categoria" value="1" checked> Lanche 2<input type="radio" name="categoria" value="2"><br><br>
+                                <input type="submit" name="att_funcionario" value="Att funcionario">
+                            </form>
+                            <br>
+                            <button class="btn btn-dark" onclick="fecha_altera_funcionario()">Fechar</button>
+                        </div>
+                        <div id="delete_func">
+                            <!-- modal delete funcionarios -->
+                            <form name="delet" method="post" onsubmit="deleteFuncionariosJs()">
+                                <input type="text" name="nome" placeholder="Qual funcionário deletar?">
+                            </form>
+                            <br>
+                            <button class="btn btn-dark" onclick="fecha_deleta_funcionario()">Fechar</button>
+                        </div>
+                    </modais>
+                    <hr>
+                </div>
+            </grid>
+        </div>
+        <div class="container-fluid">
+            <grid class="row">
+                <div class="col-md-4 col-sm-8">
+                    <div class="table-responsive">
+                        <table id="tabelaProdutos" class="table table-dark table-hover table-striped table-sm">
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4">
+                    <div class="table-responsive">
+                        <table id="tabelaCategorias" class="table table-dark table-hover table-striped table-sm">
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="table-responsive">
+                        <table id="tabelaFuncionarios" class="table table-dark table-hover table-striped table-sm">
+                        </table>
+                    </div>
+                </div>
+                <br>
+            </grid>
+        </div>
+
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="../js/funcoesProdutos.js"></script>
+        <script src="../js/funcoesFuncionarios.js"></script>
+        <script src="../js/funcoesCategorias.js"></script>
+        <script src="../js/modaisAdmin.js"></script>
+    </div>
+</body>
+
+</html>

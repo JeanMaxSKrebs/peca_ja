@@ -1,0 +1,66 @@
+<?php
+
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Peça Já</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <h1>Peça Já</h1>
+    <h2>Gerenciador de Pedidos de Fast-Food Online</h2>
+
+    <!-- verificar login -->
+    <?php
+    include("../servicos/conexao.php");
+    try {
+
+        $sql = "select * from produtos";
+        $entrada = $pdo->prepare($sql);
+        $entrada->execute();
+
+        while ($registro = $entrada->fetch(PDO::FETCH_ASSOC)) {
+            ?>
+            <div>
+                <form action="" method="post">
+            <?php
+                    $codigo_produto = $registro['codigo'];
+                    $nome_produto = $registro['nome'];
+                    $valor_produto = $registro['valor'];
+                    $desconto_produto = $registro['desconto'];
+        
+                    echo("$nome_produto <br> $valor_produto <br> $desconto_produto");
+            ?>
+                    <input type="text"  name='nome' value="<?php echo ($nome_produto); ?>">
+                    <input type="text">
+                    <input type="text">
+                    <input type="submit">
+                    
+                </form>
+            </div>
+            <?php
+                }
+            } catch (PDOException $ex) {
+                echo ($ex->getMessage());
+            }
+
+            ?>
+</body>
+
+</html>
+<!--
+while (a) { }
+    $sql = "select produtos where codigo = $codigo";
+    try {
+        $entrada = $pdo->prepare($sql);
+        $entrada->execute($array);
+        echo "<script>alert('Sucesso')</script>";
+    } catch (PDOException $ex) {
+        echo ($ex->getMessage());
+    }-->
