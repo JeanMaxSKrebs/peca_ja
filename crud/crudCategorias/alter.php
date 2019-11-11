@@ -5,22 +5,22 @@ require_once('conection.php');
 require_once('functions.php');
 
 
-//$pessoa = json_decode(file_get_contents("php://input"), true);
 $json = file_get_contents('php://input');
 $obj = json_decode($json);
 $array = [];
-$array = [$obj->nome, $obj->valor, $obj->desconto, $obj->categoria, $obj->busca];
-//$array = (array) $obj;
-//$array = json_decode($obj, true);
-//$resultado = var_dump($array);
+$array = [$obj->tipo, $obj->busca];
 
-$resultado = alterProdutosPhp($conection, $array);
+$resultado = alterCategoriasPhp($conection, $array);
 
 
-if($resultado) {
-	echo "Sucesso ao alterar no banco de dados";
-} else {
-	echo "Falha ao alterar no banco de dados";
+if($resultado)
+{
+	$verifica = 'true';
 }
+else
+{
+	$verifica = 'false';
+}
+return json_encode($verifica);
 
 ?>

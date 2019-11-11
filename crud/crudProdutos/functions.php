@@ -57,7 +57,7 @@ function busca_alteraPhp($conection, $array)
         echo 'Error: ' . $e->getMessage();
     }
 }
-function deletePhp($conection, $array){
+function deleteProdutosPhp($conection, $array){
     try{
         $query = $conection->prepare("delete from produtos where nome=?");
         $result = $query->execute($array);

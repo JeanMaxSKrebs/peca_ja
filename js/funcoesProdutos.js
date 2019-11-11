@@ -1,19 +1,19 @@
-const resultado = document.getElementById("resultado");
-const attFormProduto = document.getElementById('attForm_produto');
+const resultado = document.getElementById("resultado")
+const attFormProduto = document.getElementById('attForm_produto')
 
 function mostraProdutos() {
-    event.preventDefault();
+    event.preventDefault()
 
-    let url = '../crud/crudProdutos/search.php';
+    let url = '../crud/crudProdutos/search.php'
 
     console.log(`Conectando a ${url}`)
-    let tabela = document.querySelector("#tabelaProdutos");
-    tabela.innerHTML = '';
+    let tabela = document.querySelector("#tabelaProdutos")
+    tabela.innerHTML = ''
 
     // com axios
     axios.get(url)
         .then(resp => {
-            console.log('Recebendo dados!');
+            console.log('Recebendo dados!')
 
             let table = '<table>'
             table += '<tr><td>Produtos</td></tr>'
@@ -28,7 +28,7 @@ function mostraProdutos() {
                 });
                 table += '</tr>'
             });
-            tabela.innerHTML += table + '</table>';
+            tabela.innerHTML += table + '</table>'
             resultado.innerHTML = "SUCESSO"
         })
         .catch(error => {
@@ -37,104 +37,136 @@ function mostraProdutos() {
         });
 }
 
-function buscaProdutos_nomeJs() {
-    resultado.innerHTML = '';
-    let busca_nome = document.getElementById('busca_nome');
-    let busca = document.getElementById('nome_busca_produto').value;
-    let url = `../aplicacao/search_nome.php?busca=${busca}`;
+function insertProdutosJs() {
+    event.preventDefault()
+
+    resultado.innerHTML = '' //seta a div de resultado como vazia
+    let nome = insertProdutos.nome.value
+    let valor = insertProdutos.valor.value
+    let desconto = insertProdutos.desconto.value
+    let categoria = insertProdutos.categoria.value
+    let produtos = new Produtos(nome, valor, desconto, categoria) //instancia um novo objeto usando o construtor
+    let url = '../crud/crudProdutos/insert.php'
+    console.log(`Conectando a ${url}`)
+    axios.post(url, JSON.stringify(produtos))
+        .then(resp => {
+            console.log('Recebendo dados!')
+            resultado.innerHTML = "SUCESSO"
+            insertProdutos.nome.value = ''
+            insertProdutos.valor.value = ''
+            insertProdutos.desconto.value = ''
+            insertProdutos.categoria.value = ''
+        })
+        .catch(error => console.error('Erro ao tentar acessar o php:', error))
+}
+
+function alterProdutosJs() {
+    event.preventDefault()
+
+    let busca = alterProdutos.busca.value
+    let url = `../crud/crudProdutos/search_altera.php?busca=${busca}`
     console.log(`Conectando a ${url}`)
 
     axios.get(url, { query: { busca } })
         .then(resp => {
             console.log('Recebendo dados!');
+            alterProdutos.style.display = 'block'
+            attProdutos.nome.value = resp.data.nome
+            attProdutos.valor.value = resp.data.valor
+            attProdutos.desconto.value = resp.data.desconto
+            attProdutos.categoria.value = resp.data.cod_categorias
+        })
+        .catch(error => console.error('Erro ao tentar acessar o php:', error))
+}
 
-            let table = '<table>'
+function attProdutosJs() {
+    event.preventDefault()
+
+    resultado.innerHTML = '' //seta a div de resultado como vazia
+    let busca = alterProdutos.busca.value
+    let nome = attProdutos.nome.value
+    let valor = attProdutos.valor.value
+    let desconto = attProdutos.desconto.value
+    let categoria = attProdutos.categoria.value
+
+    let produtosAtt = new Produtos(nome, valor, desconto, categoria, busca) //instancia um novo objeto usando o construtor
+    let url = '../crud/crudProdutos/alter.php'
+    console.log(`Conectando a ${url}`)
+    axios.post(url, JSON.stringify(produtosAtt))
+        .then(resp => {
+            console.log('Recebendo dados!');
+            resultado.innerHTML = "SUCESSO"
+            attFormProduto.style.display = 'none'
+        })
+        .catch(error => console.error('Erro ao tentar acessar o php:', error))
+
+}
+
+function deleteProdutosJs() {
+    event.preventDefault()
+
+    let busca = deleteProdutos.busca.value
+    let url = `../crud/crudProdutos/delete.php?busca=${busca}`
+    console.log(`Conectando a ${url}`)
+
+    axios.get(url, { query: { busca } })
+        .then(resp => {
+            console.log('Recebendo dados!');
+            resultado.innerHTML = resp.data
+            deleteProdutos.busca.value = ''
+        })
+        .catch(error => console.error('Erro ao tentar acessar o php:', error));
+}
+
+function insereCategoriaAdiciona() {
+    event.preventDefault()
+
+    let url = '../crud/crudCategorias/search.php'
+    console.log(`Conectando a ${url}`)
+
+    axios.get(url)
+        .then(resp => {
+            console.log('Recebendo dados!')
             resp.data.forEach(obj => {
-                table += '<tr>'
-                Object.entries(obj).map(([key, value]) => {
-                    table += `<td>${value}</td>`
-                });
-                table += '</tr>'
+                console.log(Object.values(obj))
+                let select = document.querySelector("#selectAdiciona")
+                let option = document.createElement("option")
+                let textoOption = document.createTextNode(`${Object.values(obj)[0]} | ${Object.values(obj)[1]}`)
+                option.value = `${Object.values(obj)[0]}`
+                option.appendChild(textoOption)
+                select.appendChild(option)
             });
-            busca_nome.innerHTML += table + '</table>';
         })
         .catch(error => {
             console.log(`Erro ao conectar:\n\n${error.message}`)
             console.log(error)
         });
-    event.preventDefault();
 }
 
-function insertProdutosJs() {
-    event.preventDefault();
+function insereCategoriaAltera() {
+    event.preventDefault()
 
-    resultado.innerHTML = ''; //seta a div de resultado como vazia
-    let nome = insert.nome.value;
-    let valor = insert.valor.value;
-    let desconto = insert.desconto.value;
-    let categoria = insert.categoria.value;
-    let produtos = new Produtos(nome, valor, desconto, categoria); //instancia um novo objeto usando o construtor
-    let url = '../crud/crudProdutos/insert.php';
-    axios.post(url, JSON.stringify(produtos))
-        .then(resp => {
-            console.log(resp)
-            console.log(resp.data)
-            resultado.innerHTML = resp.data;
-        })
-
-    .catch(error => console.error('Erro ao tentar acessar o php:', error));
-}
-
-function alterProdutosJs() {
-    event.preventDefault();
-
-    let busca = alter.busca.value;
-    let url = `../aplicacao/search_altera.php?busca=${busca}`;
+    let url = '../crud/crudCategorias/search.php'
     console.log(`Conectando a ${url}`)
 
-    axios.get(url, { query: { busca } })
+    axios.get(url)
         .then(resp => {
-            alter.style.display = 'block';
-            att.nome.value = resp.data.nome;
-            att.valor.value = resp.data.valor;
-            att.desconto.value = resp.data.desconto;
-            att.categoria.value = resp.data.categoria;
+            console.log('Recebendo dados!')
+            resp.data.forEach(obj => {
+                console.log(Object.values(obj))
+                let select = document.querySelector("#selectAltera")
+                let option = document.createElement("option")
+                let textoOption = document.createTextNode(`${Object.values(obj)[0]} | ${Object.values(obj)[1]}`)
+                option.value = `${Object.values(obj)[0]}`
+                option.appendChild(textoOption)
+                select.appendChild(option)
+            });
         })
-        .catch(error => console.error('Erro ao tentar acessar o php:', error));
-
+        .catch(error => {
+            console.log(`Erro ao conectar:\n\n${error.message}`)
+            console.log(error)
+        });
 }
-
-function attProdutosJs() {
-    event.preventDefault();
-
-    resultado.innerHTML = ''; //seta a div de resultado como vazia
-    let busca = alter.busca.value;
-    let nome = att.nome.value;
-    let valor = att.valor.value;
-    let desconto = att.desconto.value;
-    let categoria = att.categoria.value;
-    let produtosAtt = new Produtos(nome, valor, desconto, categoria, busca); //instancia um novo objeto usando o construtor
-    let url = '../aplicacao/alter.php';
-    axios.post(url, JSON.stringify(produtosAtt))
-        .then(resp => {
-            resultado.innerHTML = resp.data;
-            attFormProduto.style.display = 'none';
-        })
-        .catch(error => console.error('Erro ao tentar acessar o php:', error));
-
-}
-
-function deleteProdutosJs() {
-    event.preventDefault();
-
-    let busca = delet.busca.value;
-    let url = `../aplicacao/delete.php?busca=${busca}`;
-    console.log(`Conectando a ${url}`)
-
-    axios.get(url, { query: { busca } })
-        .catch(error => console.error('Erro ao tentar acessar o php:', error));
-}
-
 //construtor usado no insert
 var Produtos = function(nome, valor, desconto, categoria, busca) {
     this.busca = busca;

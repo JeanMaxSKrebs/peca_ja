@@ -35,34 +35,6 @@ function mostraCategorias() {
         });
 }
 
-function buscaCategorias_nomeJs() {
-    resultado.innerHTML = '';
-    let busca_nome = document.getElementById('busca_nome');
-    let busca = document.getElementById('nome_busca_produto').value;
-    let url = `../crud/crudCategorias/search_nome.php?busca=${busca}`;
-    console.log(`Conectando a ${url}`)
-
-    axios.get(url, { query: { busca } })
-        .then(resp => {
-            console.log('Recebendo dados!');
-
-            let table = '<table>'
-            resp.data.forEach(obj => {
-                table += '<tr>'
-                Object.entries(obj).map(([key, value]) => {
-                    table += `<td>${value}</td>`
-                });
-                table += '</tr>'
-            });
-            busca_nome.innerHTML += table + '</table>';
-        })
-        .catch(error => {
-            console.log(`Erro ao conectar:\n\n${error.message}`)
-            console.log(error)
-        });
-    event.preventDefault();
-}
-
 function insertCategoriasJs() {
     event.preventDefault();
 
@@ -73,9 +45,9 @@ function insertCategoriasJs() {
     let url = '../crud/crudCategorias/insert.php';
     axios.post(url, JSON.stringify(categorias))
         .then(resp => {
-            console.log(resp)
-            console.log(resp.data)
-            resultado.innerHTML = resp.data;
+            console.log('Recebendo dados!')
+            resultado.innerHTML = "SUCESSO"
+            insertCategorias.tipo.value = ''
         })
 
     .catch(error => console.error('Erro ao tentar acessar o php:', error));
@@ -90,37 +62,46 @@ function alterCategoriasJs() {
 
     axios.get(url, { query: { busca } })
         .then(resp => {
-            attFormCategoria.style.display = 'block';
-            att.nome.value = resp.data.nome;
+            console.log('Recebendo dados!');
+            alterCategorias.style.display = 'block'
+            attCategorias.nome.value = resp.data.tipo
         })
         .catch(error => console.error('Erro ao tentar acessar o php:', error));
 
 }
 
 function attCategoriasJs() {
-    event.preventDefault();
+    event.preventDefault()
+    resultado.innerHTML = '' //seta a div de resultado como vazia
+    let busca = alterCategorias.busca.value
+    let tipo = attCategorias.nome.value
 
-    let tipo = insertCategorias.tipo.value;
-
-    let categoriasAtt = new Categorias(tipo, busca); //instancia um novo objeto usando o construtor
-    let url = '../crud/crudCategorias/alter.php';
+    let categoriasAtt = new Categorias(tipo, busca) //instancia um novo objeto usando o construtor
+    let url = '../crud/crudCategorias/alter.php'
+    console.log(`Conectando a ${url}`)
     axios.post(url, JSON.stringify(categoriasAtt))
         .then(resp => {
-            resultado.innerHTML = resp.data;
-            attFormCategoria.style.display = 'none';
+            console.log('Recebendo dados!')
+            resultado.innerHTML = "SUCESSO"
+            attFormCategoria.style.display = 'none'
         })
-        .catch(error => console.error('Erro ao tentar acessar o php:', error));
+        .catch(error => console.error('Erro ao tentar acessar o php:', error))
 
 }
 
 function deleteCategoriasJs() {
     event.preventDefault();
 
-    let busca = deletar.busca.value;
+    let busca = deleteCategorias.busca.value;
     let url = `../crud/crudCategorias/delete.php?busca=${busca}`;
     console.log(`Conectando a ${url}`)
 
     axios.get(url, { query: { busca } })
+        .then(resp => {
+            console.log('Recebendo dados!');
+            resultado.innerHTML = "SUCESSO"
+            deleteCategorias.busca.value = ''
+        })
         .catch(error => console.error('Erro ao tentar acessar o php:', error));
 }
 

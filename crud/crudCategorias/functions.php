@@ -57,7 +57,7 @@ function busca_alteraPhp($conection, $array)
         echo 'Error: ' . $e->getMessage();
     }
 }
-function deletePhp($conection, $array){
+function deleteCategoriasPhp($conection, $array){
     try{
         $query = $conection->prepare("delete from categorias where tipo=?");
         $result = $query->execute($array);
