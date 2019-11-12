@@ -1,6 +1,3 @@
-<?php
-
-?>
 <!DOCTYPE html>
 <html>
 
@@ -9,58 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Peça Já</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
-    <h1>Peça Já</h1>
-    <h2>Gerenciador de Pedidos de Fast-Food Online</h2>
+<body class="text-center" onload="exibirProdutos()">
+    <div class="jumbotron container">
+        <div class="container">
+            <h1>Peça Já</h1>
+            <h2>Gerenciador de Pedidos de Fast-Food Online</h2>
+            <h2>Admin</h2>
+            <hr>
+        </div>
+        <div class="container">
+            <grid id="grid">
+                <div class="row">
+                    <div class="col">produto1</div>
+                    <div class="col">produto2</div>
+                    <div class="col">produto3</div>
+                </div>
+                <div class="row">
+                    <div class="col">produto4</div>
+                    <div class="col">produto5</div>
+                    <div class="col">produto6</div>
+                </div>
+                <div class="row">
+                    <div class="col">produto7</div>
+                    <div class="col">produto8</div>
+                    <div class="col">produto9</div>
+                </div>
+            </grid>
 
-    <!-- verificar login -->
-    <?php
-    include("../servicos/conexao.php");
-    try {
-
-        $sql = "select * from produtos";
-        $entrada = $pdo->prepare($sql);
-        $entrada->execute();
-
-        while ($registro = $entrada->fetch(PDO::FETCH_ASSOC)) {
-            ?>
-            <div>
-                <form action="" method="post">
-            <?php
-                    $codigo_produto = $registro['codigo'];
-                    $nome_produto = $registro['nome'];
-                    $valor_produto = $registro['valor'];
-                    $desconto_produto = $registro['desconto'];
-        
-                    echo("$nome_produto <br> $valor_produto <br> $desconto_produto");
-            ?>
-                    <input type="text"  name='nome' value="<?php echo ($nome_produto); ?>">
-                    <input type="text">
-                    <input type="text">
-                    <input type="submit">
-                    
-                </form>
-            </div>
-            <?php
-                }
-            } catch (PDOException $ex) {
-                echo ($ex->getMessage());
-            }
-
-            ?>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../js/funcoesProdutos.js"></script>
 </body>
 
 </html>
-<!--
-while (a) { }
-    $sql = "select produtos where codigo = $codigo";
-    try {
-        $entrada = $pdo->prepare($sql);
-        $entrada->execute($array);
-        echo "<script>alert('Sucesso')</script>";
-    } catch (PDOException $ex) {
-        echo ($ex->getMessage());
-    }-->

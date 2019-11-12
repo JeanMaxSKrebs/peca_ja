@@ -8,7 +8,6 @@ body {
 }
 
 div.login {
-    background-image: linear-gradient(rgb(228, 228, 228), rgb(184, 184, 184));
     width: 30%;
     height: 50vh;
     display: inline-block;
@@ -16,7 +15,6 @@ div.login {
 
 div.cadastro {
     margin-top: 10%;
-    background-image: linear-gradient(rgb(228, 228, 228), rgb(184, 184, 184));
     width: 35%;
     height: 40vh;
     display: inline-block;

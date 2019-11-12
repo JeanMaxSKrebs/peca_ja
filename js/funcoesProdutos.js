@@ -167,6 +167,61 @@ function insereCategoriaAltera() {
             console.log(error)
         });
 }
+
+function exibirProdutos() {
+
+    let url = '../crud/crudProdutos/search.php'
+
+    console.log(`Conectando a ${url}`)
+    let grid = document.querySelector("#grid")
+    grid.innerHTML = ''
+
+    axios.get(url)
+        .then(resp => {
+            console.log('Recebendo dados!')
+            let i = 0;
+            var row = document.createElement("div")
+            row.setAttribute("class", "row justify-content-center mt-2")
+            grid.appendChild(row)
+
+            br = document.createElement("br");
+
+            console.log(resp.data)
+
+            resp.data.forEach(obj => {
+                console.log(Object.entries(obj))
+                if (i == 3) {
+                    row = document.createElement("div")
+                    row.setAttribute("class", "row justify-content-center mt-2")
+                    grid.appendChild(row)
+                    i = 0
+                }
+
+                let col = document.createElement("div")
+                col.setAttribute("class", "card col-sm-12 col-md-3 ml-3 mr-3")
+                col.style.backgroundColor = "gray";
+                col.style.padding = "10px"
+
+                let div = document.createElement("div")
+                    // let textoOption = document.createTextNode(`${Object.values(obj)[0]}${Object.values(obj)[1]}${Object.values(obj)[2]}${Object.values(obj)[3]}${Object.values(obj)[4]}`)
+
+                let nome = document.createElement("div")
+                nome = document.createTextNode(`${Object.values(obj)[0]}`)
+                let valor = document.createElement("div")
+                valor = document.createTextNode(`${Object.values(obj)[1]}`)
+                i++
+                div.appendChild(nome)
+                div.appendChild(valor)
+                col.appendChild(div)
+                row.appendChild(col)
+
+            })
+        })
+        .catch(error => {
+            console.log(`Erro ao conectar:\n\n${error.message}`)
+            console.log(error)
+        });
+}
 //construtor usado no insert
 var Produtos = function(nome, valor, desconto, categoria, busca) {
     this.busca = busca;

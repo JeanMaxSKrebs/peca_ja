@@ -24,7 +24,7 @@ function alterProdutosPhp($conection, $array)
 function buscaProdutosPhp($conection)
 {
     try {
-        $query = $conection->prepare("select * from produtos ORDER BY codigo");
+        $query = $conection->prepare("select nome, valor from produtos ORDER BY codigo");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
