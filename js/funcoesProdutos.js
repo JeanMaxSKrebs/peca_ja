@@ -174,6 +174,7 @@ function insereCategoriaAltera() {
 }
 
 function exibirProdutos() {
+    event.preventDefault()
 
     let url = '../crud/crudProdutos/search_produto.php'
 
@@ -185,8 +186,9 @@ function exibirProdutos() {
         .then(resp => {
             console.log('Recebendo dados!')
             let i = 0;
+            let variavel = 1
             var row = document.createElement("div")
-            row.setAttribute("class", "row justify-content-center mt-2")
+            row.setAttribute("class", "row justify-content-center mt-3")
             grid.appendChild(row)
 
             br = document.createElement("br");
@@ -197,7 +199,7 @@ function exibirProdutos() {
                 console.log(Object.values(obj))
                 if (i == 3) {
                     row = document.createElement("div")
-                    row.setAttribute("class", "row justify-content-center mt-2")
+                    row.setAttribute("class", "row justify-content-center mt-3")
                     grid.appendChild(row)
                     i = 0
                 }
@@ -208,12 +210,17 @@ function exibirProdutos() {
                 col.style.padding = "10px"
 
                 let div = document.createElement("div")
+                div.setAttribute("id", variavel)
+
 
                 let nome = document.createElement("div")
                 nome.textContent = `${Object.values(obj)[0]}`
+                nome.setAttribute("id", "nome")
 
                 let valor = document.createElement("div")
                 valor.textContent = `${Object.values(obj)[1]}`
+                valor.setAttribute("id", "valor")
+
 
                 let imagem = document.createElement("img")
                 imagem.src = Object.values(obj)[2]
@@ -221,23 +228,45 @@ function exibirProdutos() {
                 imagem.height = 100
 
                 let button = document.createElement("button")
-                button.textContent = "+"
+                button.textContent = "📋"
+                button.setAttribute("class", "btn btn-block btn-outline-light")
+                button.setAttribute("onclick", `pedido(${variavel})`)
+                button.setAttribute("href", "#")
 
                 i++
-
+                variavel++
                 row.appendChild(col)
                 col.appendChild(div)
                 div.appendChild(nome)
                 div.appendChild(imagem)
                 div.appendChild(valor)
                 div.appendChild(button)
-
             })
         })
         .catch(error => {
             console.log(`Erro ao conectar:\n\n${error.message}`)
             console.log(error)
         });
+}
+
+function pedido(variavel) {
+    event.preventDefault()
+
+    let div = document.getElementById(variavel).children[0].textContent
+    document.getElementById("resultado").innerHTML += div;
+    div = document.getElementById(variavel).children[2].textContent
+    document.getElementById("resultado").innerHTML += " " + div + " " + "<br>"
+}
+
+function exclui() {
+    event.preventDefault()
+    let excluir = document.getElementById("resultado")
+    excluir.innerHTML = ""
+}
+
+function envia() {
+    event.preventDefault()
+
 }
 //construtor usado no insert
 var Produtos = function(nome, valor, desconto, categoria, imagem, busca) {
