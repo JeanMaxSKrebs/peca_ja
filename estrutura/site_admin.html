@@ -46,10 +46,10 @@
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                        <label class="custom-file-label" for="inputGroupFile01" style="text-align: left!important">Choose file</label>
                                     </div>
                                 </div>
-                                <img src="../imagens/default.png" width="100vw" height="100vh" id="imagem01">
+                                <img name="imagem" src="../imagens/default.png" width="100vw" height="100vh" id="imagem01">
                                 <br><br>
                                 <input class="btn btn-secondary" type="submit" name="cadastro_produto" value="Cadastro Produto"><br><br>
                             </form>
@@ -70,11 +70,13 @@
                                         <option selected>Categoria</option>
                                 </select><br><br>
                                 <input class="form-control" type="text" name="desconto" placeholder="Desconto"><br>
-                                <div name="imagem" class="custom-file">
-                                    <label class="custom-file-label" style="text-align: left!important" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Imagem</label>
-                                    <input class="custom-file-input" id="inputGroupFile02" type="file"><br><br>
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input class="custom-file-input" id="inputGroupFile02" type="file" aria-describedby="inputGroupFileAddon02">
+                                        <label class="custom-file-label" for="inputGroupFile02" name="label" style="text-align: left!important">Choose file</label>
+                                    </div>
                                 </div>
-                                <img name="imagem" src="../imagens/default.png" width="100vw" height="100vh">
+                                <img name="imagem" src="../imagens/default.png" width="100vw" height="100vh" id="imagem02">
                                 <br><br>
                                 <input class="btn btn-secondary" type="submit" name="att_produto" value="Att Produto">
                                 <br><br>

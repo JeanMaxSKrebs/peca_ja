@@ -45,7 +45,8 @@ function insertProdutosJs() {
     let valor = insertProdutos.valor.value
     let desconto = insertProdutos.desconto.value
     let categoria = insertProdutos.categoria.value
-    let imagem = insertProdutos.imagem.value
+    let imagem = insertProdutos.imagem.src
+    console.log(imagem)
     let produtos = new Produtos(nome, valor, desconto, categoria, imagem) //instancia um novo objeto usando o construtor
     let url = '../crud/crudProdutos/insert.php'
     console.log(`Conectando a ${url}`)
@@ -78,7 +79,6 @@ function alterProdutosJs() {
             attProdutos.desconto.value = resp.data.desconto
             attProdutos.categoria.value = resp.data.cod_categorias
             attProdutos.imagem.src = resp.data.imagem
-            imagem
         })
         .catch(error => console.error('Erro ao tentar acessar o php:', error))
 }
@@ -215,11 +215,13 @@ function exibirProdutos() {
                 let valor = document.createElement("div")
                 valor = document.createTextNode(`${Object.values(obj)[1]}`)
                 i++
-                let br = document.createElement("br")
+                let imagem = document.createElement("img")
+                imagem = document.createTextNode(`${Object.values(obj)[2]}`)
 
+                let br = document.innerHTML = "<br>"
                 div.appendChild(valor)
-                div.appendChild(br)
                 div.appendChild(nome)
+                div.appendChild(imagem)
                 col.appendChild(div)
                 row.appendChild(col)
 
@@ -237,4 +239,5 @@ var Produtos = function(nome, valor, desconto, categoria, imagem, busca) {
     this.valor = valor;
     this.desconto = desconto;
     this.categoria = categoria;
+    this.imagem = imagem;
 }

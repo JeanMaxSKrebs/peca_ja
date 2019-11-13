@@ -14,7 +14,7 @@ function insertProdutosPhp($conection, $array)
 function alterProdutosPhp($conection, $array)
 {
     try {
-        $query = $conection->prepare("update produtos set nome=?, valor=?, desconto=?, cod_categorias=? where nome=?");
+        $query = $conection->prepare("update produtos set nome=?, valor=?, desconto=?, cod_categorias=?, imagem=? where nome=?");
         $result = $query->execute($array);
         return $result;
     } catch (PDOException $e) {
@@ -72,7 +72,7 @@ function deleteProdutosPhp($conection, $array){
 function produtoClientePhp($conection)
 {
     try {
-        $query = $conection->prepare("select nome, valor from produtos ORDER BY codigo");
+        $query = $conection->prepare("select nome, valor, imagem from produtos ORDER BY codigo");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
