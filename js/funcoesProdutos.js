@@ -208,23 +208,29 @@ function exibirProdutos() {
                 col.style.padding = "10px"
 
                 let div = document.createElement("div")
-                let nome = document.createTextNode(`${Object.values(obj)[0]}`)
-                let valor = document.createTextNode(`${Object.values(obj)[1]}`)
-                let p = document.createElement("p")
-                let p2 = document.createElement("p")
+
+                let nome = document.createElement("div")
+                nome.textContent = `${Object.values(obj)[0]}`
+
+                let valor = document.createElement("div")
+                valor.textContent = `${Object.values(obj)[1]}`
+
                 let imagem = document.createElement("img")
                 imagem.src = Object.values(obj)[2]
                 imagem.width = 100
                 imagem.height = 100
 
+                let button = document.createElement("button")
+                button.textContent = "+"
+
                 i++
-                p2.appendChild(valor)
-                p.appendChild(nome)
-                div.appendChild(p)
-                div.appendChild(imagem)
-                div.appendChild(p2)
-                col.appendChild(div)
+
                 row.appendChild(col)
+                col.appendChild(div)
+                div.appendChild(nome)
+                div.appendChild(imagem)
+                div.appendChild(valor)
+                div.appendChild(button)
 
             })
         })
