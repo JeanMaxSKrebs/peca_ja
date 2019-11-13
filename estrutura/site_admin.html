@@ -43,6 +43,14 @@
                                         <option selected>Categoria</option>
                                 </select><br><br>
                                 <input class="form-control" type="text" name="desconto" placeholder="Desconto"> <br>
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                    </div>
+                                </div>
+                                <img src="../imagens/default.png" width="100vw" height="100vh" id="imagem01">
+                                <br><br>
                                 <input class="btn btn-secondary" type="submit" name="cadastro_produto" value="Cadastro Produto"><br><br>
                             </form>
                             <button class="btn btn-dark" onclick="fecha_adiciona_produto()">Fechar</button>
@@ -58,10 +66,16 @@
                             <form name="attProdutos" id="attForm_produto" onsubmit="attProdutosJs()" method="post">
                                 <input class="form-control" type="text" name="nome" placeholder="Nome"><br>
                                 <input class="form-control" type="numeric" name="valor" placeholder="Valor"> <br>
-                                <input class="form-control" type="text" name="desconto" placeholder="Desconto"><br>
                                 <select id="selectAltera" class="custom-select" name="categoria">
-                                        <!-- <option selected>Categoria</option> -->
+                                        <option selected>Categoria</option>
                                 </select><br><br>
+                                <input class="form-control" type="text" name="desconto" placeholder="Desconto"><br>
+                                <div name="imagem" class="custom-file">
+                                    <label class="custom-file-label" style="text-align: left!important" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Imagem</label>
+                                    <input class="custom-file-input" id="inputGroupFile02" type="file"><br><br>
+                                </div>
+                                <img name="imagem" src="../imagens/default.png" width="100vw" height="100vh">
+                                <br><br>
                                 <input class="btn btn-secondary" type="submit" name="att_produto" value="Att Produto">
                                 <br><br>
                             </form>
@@ -222,7 +236,6 @@
             </grid>
         </div>
 
-        <!-- CDN jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -232,6 +245,8 @@
         <script src="../js/funcoesFuncionarios.js"></script>
         <script src="../js/funcoesCategorias.js"></script>
         <script src="../js/modaisAdmin.js"></script>
+        <script src="../js/imagens.js"></script>
+
     </div>
 </body>
 

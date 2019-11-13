@@ -45,7 +45,8 @@ function insertProdutosJs() {
     let valor = insertProdutos.valor.value
     let desconto = insertProdutos.desconto.value
     let categoria = insertProdutos.categoria.value
-    let produtos = new Produtos(nome, valor, desconto, categoria) //instancia um novo objeto usando o construtor
+    let imagem = insertProdutos.imagem.value
+    let produtos = new Produtos(nome, valor, desconto, categoria, imagem) //instancia um novo objeto usando o construtor
     let url = '../crud/crudProdutos/insert.php'
     console.log(`Conectando a ${url}`)
     axios.post(url, JSON.stringify(produtos))
@@ -56,6 +57,7 @@ function insertProdutosJs() {
             insertProdutos.valor.value = ''
             insertProdutos.desconto.value = ''
             insertProdutos.categoria.value = ''
+            insertProdutos.imagem.value = ''
         })
         .catch(error => console.error('Erro ao tentar acessar o php:', error))
 }
@@ -75,6 +77,8 @@ function alterProdutosJs() {
             attProdutos.valor.value = resp.data.valor
             attProdutos.desconto.value = resp.data.desconto
             attProdutos.categoria.value = resp.data.cod_categorias
+            attProdutos.imagem.src = resp.data.imagem
+            imagem
         })
         .catch(error => console.error('Erro ao tentar acessar o php:', error))
 }
@@ -88,8 +92,9 @@ function attProdutosJs() {
     let valor = attProdutos.valor.value
     let desconto = attProdutos.desconto.value
     let categoria = attProdutos.categoria.value
+    let imagem = attProdutos.imagem.src
 
-    let produtosAtt = new Produtos(nome, valor, desconto, categoria, busca) //instancia um novo objeto usando o construtor
+    let produtosAtt = new Produtos(nome, valor, desconto, categoria, imagem, busca) //instancia um novo objeto usando o construtor
     let url = '../crud/crudProdutos/alter.php'
     console.log(`Conectando a ${url}`)
     axios.post(url, JSON.stringify(produtosAtt))
@@ -170,7 +175,7 @@ function insereCategoriaAltera() {
 
 function exibirProdutos() {
 
-    let url = '../crud/crudProdutos/search.php'
+    let url = '../crud/crudProdutos/search_produto.php'
 
     console.log(`Conectando a ${url}`)
     let grid = document.querySelector("#grid")
@@ -189,7 +194,7 @@ function exibirProdutos() {
             console.log(resp.data)
 
             resp.data.forEach(obj => {
-                console.log(Object.entries(obj))
+                console.log(Object.values(obj))
                 if (i == 3) {
                     row = document.createElement("div")
                     row.setAttribute("class", "row justify-content-center mt-2")
@@ -210,8 +215,11 @@ function exibirProdutos() {
                 let valor = document.createElement("div")
                 valor = document.createTextNode(`${Object.values(obj)[1]}`)
                 i++
-                div.appendChild(nome)
+                let br = document.createElement("br")
+
                 div.appendChild(valor)
+                div.appendChild(br)
+                div.appendChild(nome)
                 col.appendChild(div)
                 row.appendChild(col)
 
@@ -223,7 +231,7 @@ function exibirProdutos() {
         });
 }
 //construtor usado no insert
-var Produtos = function(nome, valor, desconto, categoria, busca) {
+var Produtos = function(nome, valor, desconto, categoria, imagem, busca) {
     this.busca = busca;
     this.nome = nome;
     this.valor = valor;

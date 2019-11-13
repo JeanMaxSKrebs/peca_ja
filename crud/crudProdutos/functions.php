@@ -3,7 +3,7 @@ require_once('conection.php');
 function insertProdutosPhp($conection, $array)
 {
     try {
-        $query = $conection->prepare("insert into produtos(nome, valor, desconto, cod_categorias) values (?, ?, ?, ?)");
+        $query = $conection->prepare("insert into produtos(nome, valor, desconto, cod_categorias, imagem) values (?, ?, ?, ?, ?)");
         $result = $query->execute($array);
         return $result;
     } catch (PDOException $e) {
@@ -24,7 +24,7 @@ function alterProdutosPhp($conection, $array)
 function buscaProdutosPhp($conection)
 {
     try {
-        $query = $conection->prepare("select nome, valor from produtos ORDER BY codigo");
+        $query = $conection->prepare("select codigo, cod_categorias, nome, valor, desconto  from produtos ORDER BY codigo");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -67,4 +67,17 @@ function deleteProdutosPhp($conection, $array){
         echo 'Error: ' . $e->getMessage();
     }
 
+}
+// site_cliente
+function produtoClientePhp($conection)
+{
+    try {
+        $query = $conection->prepare("select nome, valor from produtos ORDER BY codigo");
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    } catch (PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
 }
