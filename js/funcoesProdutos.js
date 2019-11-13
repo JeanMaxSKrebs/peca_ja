@@ -210,15 +210,19 @@ function exibirProdutos() {
                 let div = document.createElement("div")
                 let nome = document.createTextNode(`${Object.values(obj)[0]}`)
                 let valor = document.createTextNode(`${Object.values(obj)[1]}`)
+                let p = document.createElement("p")
+                let p2 = document.createElement("p")
                 let imagem = document.createElement("img")
                 imagem.src = Object.values(obj)[2]
                 imagem.width = 100
                 imagem.height = 100
 
                 i++
-                div.appendChild(valor)
+                p2.appendChild(valor)
+                p.appendChild(nome)
+                div.appendChild(p)
                 div.appendChild(imagem)
-                div.appendChild(nome)
+                div.appendChild(p2)
                 col.appendChild(div)
                 row.appendChild(col)
 
