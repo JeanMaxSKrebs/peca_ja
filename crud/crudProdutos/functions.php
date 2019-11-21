@@ -72,7 +72,7 @@ function deleteProdutosPhp($conection, $array){
 function produtoClientePhp($conection)
 {
     try {
-        $query = $conection->prepare("select nome, valor, imagem from produtos ORDER BY codigo");
+        $query = $conection->prepare("select nome, valor, imagem, codigo from produtos ORDER BY codigo");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
 

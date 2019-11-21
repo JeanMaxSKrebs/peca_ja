@@ -129,7 +129,7 @@ function insereCategoriaAdiciona() {
     let url = '../crud/crudCategorias/search.php'
     console.log(`Conectando a ${url}`)
 
-    axios.get(url)
+    axios.put(url)
         .then(resp => {
             console.log('Recebendo dados!')
             resp.data.forEach(obj => {
@@ -172,6 +172,11 @@ function insereCategoriaAltera() {
             console.log(error)
         });
 }
+let listaProdutos = []
+
+
+// if()
+let arrayPedido = []
 
 function exibirProdutos() {
     event.preventDefault()
@@ -185,18 +190,17 @@ function exibirProdutos() {
     axios.get(url)
         .then(resp => {
             console.log('Recebendo dados!')
-            let i = 0;
-            let variavel = 1
+            let i = 0
+            let id = 0
             var row = document.createElement("div")
             row.setAttribute("class", "row justify-content-center mt-3")
             grid.appendChild(row)
 
-            br = document.createElement("br");
+            // console.log(resp.data)
+            listaProdutos = resp.data
 
-            console.log(resp.data)
-
-            resp.data.forEach(obj => {
-                console.log(Object.values(obj))
+            listaProdutos.forEach(obj => {
+                // console.log(Object.values(obj))
                 if (i == 3) {
                     row = document.createElement("div")
                     row.setAttribute("class", "row justify-content-center mt-3")
@@ -206,21 +210,19 @@ function exibirProdutos() {
 
                 let col = document.createElement("div")
                 col.setAttribute("class", "card col-sm-12 col-md-3 ml-3 mr-3")
-                col.style.backgroundColor = "gray";
+                col.style.backgroundColor = "#8FBC8F";
                 col.style.padding = "10px"
 
                 let div = document.createElement("div")
-                div.setAttribute("id", variavel)
-
+                div.setAttribute("id", id)
 
                 let nome = document.createElement("div")
                 nome.textContent = `${Object.values(obj)[0]}`
-                nome.setAttribute("id", "nome")
+                nome.style.fontWeight = "bolder"
 
                 let valor = document.createElement("div")
                 valor.textContent = `${Object.values(obj)[1]}`
-                valor.setAttribute("id", "valor")
-
+                valor.style.fontWeight = "bolder"
 
                 let imagem = document.createElement("img")
                 imagem.src = Object.values(obj)[2]
@@ -230,11 +232,16 @@ function exibirProdutos() {
                 let button = document.createElement("button")
                 button.textContent = "📋"
                 button.setAttribute("class", "btn btn-block btn-outline-light")
-                button.setAttribute("onclick", `pedido(${variavel})`)
-                button.setAttribute("href", "#")
+                button.onclick = function() {
+                    // console.log(arrayPedido)
+                    arrayPedido.push(obj)
+                    pedido(arrayPedido)
+                    // document.cookie = JSON.stringify(arrayPedido)
+                    console.log(document.cookie)
+                }
 
+                id++
                 i++
-                variavel++
                 row.appendChild(col)
                 col.appendChild(div)
                 div.appendChild(nome)
@@ -249,25 +256,6 @@ function exibirProdutos() {
         });
 }
 
-function pedido(variavel) {
-    event.preventDefault()
-
-    let div = document.getElementById(variavel).children[0].textContent
-    document.getElementById("resultado").innerHTML += div;
-    div = document.getElementById(variavel).children[2].textContent
-    document.getElementById("resultado").innerHTML += " " + div + " " + "<br>"
-}
-
-function exclui() {
-    event.preventDefault()
-    let excluir = document.getElementById("resultado")
-    excluir.innerHTML = ""
-}
-
-function envia() {
-    event.preventDefault()
-
-}
 //construtor usado no insert
 var Produtos = function(nome, valor, desconto, categoria, imagem, busca) {
     this.busca = busca;

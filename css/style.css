@@ -4,7 +4,15 @@ body {
     /* background-image: linear-gradient(rgb(228, 228, 228), rgb(30, 184, 184)); */
     width: 100vw;
     /* height: 150vh; */
-    background-color: gray;
+    /* background-color: #FF6347; */
+    background-image: url("../imagens/sandubinha_bg.png");
+    background-repeat: initial;
+    background-color: #FFE4C4;
+}
+
+.jumbotron {
+    background-repeat: initial;
+    background-color: #ed9a3e;
 }
 
 div.login {

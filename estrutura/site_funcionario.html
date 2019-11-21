@@ -10,19 +10,16 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body class="text-center">
+<body class="text-center" onload="exibePedidos()">
     <div class="jumbotron container">
         <div class="container">
             <h1>Peça Já</h1>
             <h2>Gerenciador de Pedidos de Fast-Food Online</h2>
-            <h2>Admin</h2>
+            <h2>Funcionários</h2>
             <hr>
         </div>
         <div class="container">
-            <grid class="row">
-                <div class="col">produto1</div>
-                <div class="col">produto1</div>
-                <div class="col">produto1</div>
+            <grid id="grid">
             </grid>
         </div>
     </div>
@@ -30,6 +27,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../js/funcoesPedidos.js"></script>
 </body>
 
 </html>
