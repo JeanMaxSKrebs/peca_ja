@@ -17,7 +17,7 @@ function pedido(arrayPedido) {
         $.ajax({
             type: 'POST',
             url: "../crud/crudPedidos/envia.php",
-            data: {dados: JSON.stringify(arrayPedido)},
+            data: {dados: JSON.stringify(arrayPedido)}
             // success: function(){alert("ok")},
             // error: function(){alert("erro")}
         });
@@ -26,38 +26,6 @@ function pedido(arrayPedido) {
 
 
 }
-
-// function exibirPedido() {
-//     let resultado = document.getElementById("resultado")
-//     resultado.innerHTML = ""
-//     let form = document.createElement("form")
-//     form.name = "pedido"
-//     form.setAttribute("onsubmit", "envia()")
-//     let button = document.createElement("input")
-//     button.type = "submit"
-
-//     pedidoProdutos.forEach(produto => {
-//         let div = document.createElement("div")
-//         div.style.margin = "3px 25vw"
-//         div.style.border = "1px solid"
-//         div.style.borderRadius = "5px"
-//         div.style.borderColor = "rgba(0, 0, 0, .250)"
-//         div.style.backgroundColor = "#8FBC8F"
-//         div.innerHTML = `$ { produto.nome } - $ { produto.valor }`
-//         let input = document.createElement("input")
-//         input.type = "hidden"
-//         input.name = "codigo"
-//         input.value = `$ { produto.codigo }`
-
-
-
-
-//         div.appendChild(input)
-//         form.appendChild(div)
-//     })
-//     form.appendChild(button)
-//     resultado.appendChild(form)
-// }
 
 function exclui() {
     event.preventDefault()

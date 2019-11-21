@@ -1,55 +1,63 @@
 <?php
 require_once('conection.php');
 
-function pedido($conection, $array){
+// function pedido($conection, $array){
     
-    try {
-        $query = $conection->prepare("insert into pedidos(cod_clientes, valor_total, ) values (?, ?)");
-        $result = $query->execute($array);
-        return $result;
-    } catch (PDOException $e) {
-        echo 'Error: ' . $e->getMessage();
-    }
-}
+//     try {
+//         $query = $conection->prepare("insert into pedidos(cod_clientes, valor_total, ) values (?, ?)");
+//         $result = $query->execute($array);
+//         return $result;
+//     } catch (PDOException $e) {
+//         echo 'Error: ' . $e->getMessage();
+//     }
+// }
 
 
 function insertPedidoProduto($pedido, $returnid = false){
+    // print_r($pedido);
 
     $commands = [
-        'INSERT INTO pedidos(valor_total) VALUES (?,?,?,?,?)',
-            'SELECT pg_sequence_last_value(\'pedido_cod_seq\') as lastCodPedidos LIMIT 1'
+        'INSERT INTO pedidos(cod_clientes, valor_total) VALUES (?,?)',
+            'SELECT pg_sequence_last_value(\'pedidos_codigo_seq\') as lastCodPedidos LIMIT 1'
     ];
 
     $params = [ 
                 [
-                    $pedido['cod_cliente'],
+                    $pedido['cod_clientes'],
                     // $produto['cod_func'],
                     // $produto['data_pedido'],
                     $pedido['valor_total']
                 ],
                 []
             ];
-}
 
-    foreach ($pedido['codigo'] as $codigo) {
-        $sql = 'INSERT INTO prod_desc (id_prod,id_desc) SELECT pg_sequence_last_value(\'pedido_cod_seq\') as lastCodPedido , ? FROM pedidos LIMIT 1';
-            array_push($commands,$sql);
-            array_push($params,[$codigo]);
-    }
-    if($returnid)
-        $returnid='pedido_cod_seq';
+        foreach ($pedido['produtos'] as $produto) {
+            $sql = 'INSERT INTO pedido_produto(cod_pedidos, cod_produto) SELECT pg_sequence_last_value(\'pedidos_codigo_seq\') as lastCodPedidos, ? FROM pedidos LIMIT 1';
+                array_push($commands,$sql);
+                array_push($params,[$produto['codigo']]);
+        }
 
-    $result = pedidoProduto($commands,$params,$returnid);
-    if($result){
-        return $result;
-    }else{
-        return false;
+        // var_dump($commands);
+        // var_dump($params);
+
+        // if($returnid)
+        // {
+            $returnid='pedidos_codigo_seq';
+        // }
+
+        $result = pedidoProduto($commands,$params,$returnid);
+
+        if($result){
+            return $result;
+        }else{
+            return false;
+        }
 }
 
 function pedidoProduto(array $commands, array $multi_parameters, $sequence = NULL){
-    
+
     $connection = null;
-    //debug([$commands,$multi_parameters]);
+
     if(count($commands)!==count($multi_parameters)) {
         throw new Exception("Queries and Parameters does'nt match!");
     }elseif (isAssoc($commands)||isAssoc($multi_parameters)){
@@ -58,21 +66,22 @@ function pedidoProduto(array $commands, array $multi_parameters, $sequence = NUL
     try {
         $connection  = connect();
         $connection->beginTransaction();
-        foreach ($commands as $index=>$sql) {
-            if($multi_parameters[$index]) {
-                $preparedStatment = $connection->prepare($sql, $multi_parameters);
-                bindValuesParameters($preparedStatment, $multi_parameters[$index]);
-            }else{
-                $preparedStatment = $connection->prepare($sql);
-            }
-            $preparedStatment->execute();
-            $error = $preparedStatment->errorInfo();
-            if ($error[2]||$error[0]!=='00000') {
-                throw new PDOException($preparedStatment->errorCode());
-            }
+        foreach ($commands as $key =>$sql) {
+            
+            $query = $connection->prepare($sql);
+            $result = $query->execute($multi_parameters[$key]);
+            // $error = $result->errorInfo();
+
+            // if ($error[2]||$error[0]!=='00000') {
+            //     throw new PDOException($result->errorCode());
+            // }
         }
+        
         if (isset($sequence)) {
+            print_r($commands);
             $ID = $connection->lastInsertId($sequence);
+            var_dump($ID);
+            print_r($ID);
             if($ID){
                 $connection->commit();
                 return $ID;
@@ -82,13 +91,15 @@ function pedidoProduto(array $commands, array $multi_parameters, $sequence = NUL
             }
         } else {
             $connection->commit();
-            return $preparedStatment->rowCount();
+            return $result->rowCount();
         }
-    } catch (PDOException $exc) {
+    } catch (PDOException $ex) {
         if ((isset($connection)) && ($connection->inTransaction())) {
             $connection->rollBack();
         }
-        debugStatment($preparedStatment,$exc);
+        echo("Deu erro! <br>". $ex->getMessage());
+
+        var_dump($commands);
         return false;
     } finally {
         if (isset($connection)) {
