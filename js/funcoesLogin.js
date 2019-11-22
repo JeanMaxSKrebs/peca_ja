@@ -7,14 +7,20 @@ function validaSessao() {
 
     let usuario = acesso.usuario.value
     let senha = acesso.senha.value
-    let url = `../servicos/valida_sessao.php?usuario=${usuario}&senha=${senha}`
+    let url = `../servicos/autentica.php`
 
-    axios.post(url)
+    const dataForm = new FormData();
+
+    dataForm.append('usuario', usuario)
+    dataForm.append('senha', senha)
+
+    axios.post(url, dataForm)
         .then(resp => {
             console.log('Recebendo dados!');
             console.log(resp);
             if (resp) {
                 if (resp.data.sucesso == true) {
+                    console.log($_SESSION['usuario'])
                     window.location = `site_${resp.data.usuario}.html`
                 } else {
                     let texto = document.getElementById('texto');

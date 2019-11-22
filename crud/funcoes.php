@@ -68,18 +68,7 @@ function deletePhp($conection, $array){
     }
 
 }
-function validaSessaoAdminPhp($conection, $array){
-    try{
-        $query = $conection->prepare("select * from clientes where codigo=1 and login=? and senha=?");
-        $query->execute($array);
-        $result = $query->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
-    } catch (PDOException $e) {
-        echo 'Error: ' . $e->getMessage();
-    }
-}
-function validaSessaoClientePhp($conection, $array){
+function validaSessaoPhp($conection, $array){
     try{
         $query = $conection->prepare("select * from clientes where login=? and senha=?");
         $query->execute($array);
