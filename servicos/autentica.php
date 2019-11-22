@@ -30,9 +30,9 @@ if (!(empty($usuario) or empty($senha))) // testa se os campos do formul√°rio n√
     }
     if($tipoUsuario){
 		session_start();
-		$_SESSION['usuario'] = $tipoUsuario['nome'];
-		$_SESSION['usuario'] = $tipoUsuario['login'];
-		$_SESSION['usuario'] = $tipoUsuario['admin'];
+		$_SESSION['nome'] = $tipoUsuario['nome'];
+		$_SESSION['login'] = $tipoUsuario['login'];
+		$_SESSION['admin'] = $tipoUsuario['admin'];
 
     }
 
