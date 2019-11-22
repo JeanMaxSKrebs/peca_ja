@@ -21,5 +21,7 @@ function autentica() {
         })
 }
 function validaSessao(){
-    
+    alert("Seja Bem-Vindo".$_SESSION['nome'])
+    $_SESSION['login']
+    $_SESSION['admin']
 }

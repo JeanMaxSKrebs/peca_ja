@@ -13,7 +13,6 @@ function insertCliente() {
         .then(resp => {
             console.log(resp)
             console.log(resp.data)
-            resultado.innerHTML = resp.data;
         })
 
     .catch(error => console.error('Erro ao tentar acessar o php:', error));

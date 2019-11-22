@@ -1,0 +1,9 @@
+codigo;nome;salario;tipo;endereco;cpf;login;senha;admin
+1;josé;1000.00;comum;avenida das palmeiras;09508530558;jose;jose;False
+3;funcionario;;;;           ;funcionario;funcionario;False
+11;teste;650.00;on;joão;45860820554;joao;;False
+12;teste;0.00;on;aaa;1          ;admaa;;False
+13;teste;101.00;on;jean;04506635078;jean;;False
+15;danilo;1000.00;gerente;;04506635078;danilo;danilo;False
+19;teste4;300.00;gerente;Rua Barão da Conceição;04506635078;teste4;admin;False
+20;teste5;100.00;comum;Avenida Campina, 696-01;04506635078;teste5;admin;False
