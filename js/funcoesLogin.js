@@ -20,12 +20,8 @@ function validaSessao() {
             console.log(resp);
             if (resp) {
                 if (resp.data.sucesso == true) {
-                    console.log($_SESSION['usuario'])
                     window.location = `site_${resp.data.usuario}.html`
-                } else {
-                    let texto = document.getElementById('texto');
-                    texto.innerHTML = resp.mensagem;
-                };
+                }
             }
         })
 }

@@ -30,9 +30,10 @@ if (!(empty($usuario) or empty($senha))) // testa se os campos do formulÃ¡rio nÃ
     }
     if($tipoUsuario){
 		session_start();
-		var_dump($tipoUsuario);
 		$_SESSION['usuario'] = $tipoUsuario['nome'];
 		$_SESSION['usuario'] = $tipoUsuario['login'];
+		$_SESSION['usuario'] = $tipoUsuario['admin'];
+
     }
 
   
@@ -40,6 +41,6 @@ if (!(empty($usuario) or empty($senha))) // testa se os campos do formulÃ¡rio nÃ
 {
     $retorno = array('sucesso' => false, 'mensagem' => 'campos vazios');
 }
+echo json_encode($retorno);
 
-print_r(json_encode($retorno));
 ?>
