@@ -14,7 +14,6 @@ function insertCliente() {
             console.log(resp)
             console.log(resp.data)
         })
-
     .catch(error => console.error('Erro ao tentar acessar o php:', error));
 }
 

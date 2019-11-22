@@ -10,13 +10,17 @@ $obj = json_decode($json);
 $admin = 'false'; 
 $array = [];
 $array = [$obj->nome, $obj->cpf, $obj->login, $obj->senha, $admin];
+$destinatario = $obj->login;
 
 $resultado = insertClientePhp($conection, $array);
 
-if($resultado) {
-	echo "Sucesso ao inserir no banco de dados";
-} else {
-	echo "Falha ao inserir no banco de dados";
+if($resultado)
+{
+	$verifica = 'true'	;
 }
-
+else
+{
+	$verifica = 'false';
+}
+return json_encode($verifica);
 ?>

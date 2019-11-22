@@ -16,7 +16,6 @@ $array = [$obj->nome, $obj->salario, $obj->tipo, $obj->endereco, $obj->cpf, $obj
 //$resultado = var_dump($array);
 
 $resultado = insertFuncionariosPhp($conection, $array);
-//echo $obj->quant;
 
 if($resultado)
 {
