@@ -2,7 +2,7 @@ function login() {
     let url = ''
 }
 
-function validaSessao() {
+function autentica() {
     event.preventDefault()
 
     let usuario = acesso.usuario.value
