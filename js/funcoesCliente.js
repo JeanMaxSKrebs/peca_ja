@@ -1,5 +1,23 @@
-const resultado = document.getElementById("resultado");
 const attForm = document.getElementById('attForm');
+
+function insertCliente() {
+    event.preventDefault();
+
+    let nome = cadastro.nome.value;
+    let cpf = cadastro.cpf.value;
+    let login = cadastro.login.value;
+    let senha = cadastro.senha.value;
+    let clientes = new Clientes(nome, cpf, login, senha); //instancia um novo objeto usando o construtor
+    let url = '../crud/crudClientes/insert.php';
+    axios.post(url, JSON.stringify(clientes))
+        .then(resp => {
+            console.log(resp)
+            console.log(resp.data)
+            resultado.innerHTML = resp.data;
+        })
+
+    .catch(error => console.error('Erro ao tentar acessar o php:', error));
+}
 
 function imprimirJSON() {
     resultado.innerHTML = '';
@@ -7,7 +25,7 @@ function imprimirJSON() {
 
     console.log(`Conectando a ${url}`)
 
-    let Cliente = document.getElementById('Cliente')
+    let Clientes = document.getElementById('Cliente')
         // com axios
     axios.get(url)
         .then(resp => {
@@ -22,7 +40,7 @@ function imprimirJSON() {
                 });
                 table += '</tr>'
             });
-            Cliente.innerHTML += table + '</table>';
+            Clientes.innerHTML += table + '</table>';
         })
         .catch(error => {
             console.log(`Erro ao conectar:\n\n${error.message}`)
@@ -59,25 +77,6 @@ function buscaCliente_nomeJs() {
     event.preventDefault();
 }
 
-function insertClienteJs() {
-    event.preventDefault();
-
-    resultado.innerHTML = ''; //seta a div de resultado como vazia
-    let nome = insert.nome.value;
-    let cpf = insert.cpf.value;
-    let login = insert.login.value;
-    let senha = insert.senha.value;
-    let cliente = new Cliente(nome, cpf, login, senha); //instancia um novo objeto usando o construtor
-    let url = '../aplicacao/insert.php';
-    axios.post(url, JSON.stringify(cliente))
-        .then(resp => {
-            console.log(resp)
-            console.log(resp.data)
-            resultado.innerHTML = resp.data;
-        })
-
-    .catch(error => console.error('Erro ao tentar acessar o php:', error));
-}
 function alterClienteJs() {
     event.preventDefault();
 
@@ -106,9 +105,9 @@ function attClienteJs() {
     let cpf = att.cpf.value;
     let login = att.login.value;
     let senha = att.senha.value;
-    let clienteAtt = new Cliente(nome, cpf, login, senha, busca); //instancia um novo objeto usando o construtor
+    let clientesAtt = new Clientes(nome, cpf, login, senha, busca); //instancia um novo objeto usando o construtor
     let url = '../aplicacao/alter.php';
-    axios.post(url, JSON.stringify(clienteAtt))
+    axios.post(url, JSON.stringify(clientesAtt))
         .then(resp => {
             resultado.innerHTML = resp.data;
             attForm.style.display = 'none';
@@ -129,7 +128,7 @@ function deleteClienteJs() {
 }
 
 //construtor usado no insert
-var Cliente = function(nome, cpf, login, senha, busca) {
+var Clientes = function(nome, cpf, login, senha, busca) {
     this.busca = busca;
     this.nome = nome;
     this.cpf = cpf;
