@@ -40,10 +40,10 @@ function insertPedidoProduto($pedido, $returnid = false){
         // var_dump($commands);
         // var_dump($params);
 
-        // if($returnid)
-        // {
+        if($returnid)
+        {
             $returnid='pedidos_codigo_seq';
-        // }
+        }
 
         $result = pedidoProduto($commands,$params,$returnid);
 
