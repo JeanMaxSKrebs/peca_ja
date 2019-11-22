@@ -1,7 +1,3 @@
-function login() {
-    let url = ''
-}
-
 function autentica() {
     event.preventDefault()
 
@@ -17,11 +13,13 @@ function autentica() {
     axios.post(url, dataForm)
         .then(resp => {
             console.log('Recebendo dados!');
-            console.log(resp);
             if (resp) {
                 if (resp.data.sucesso == true) {
                     window.location = `site_${resp.data.usuario}.html`
                 }
             }
         })
+}
+function validaSessao(){
+    
 }
