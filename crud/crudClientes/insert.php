@@ -7,8 +7,9 @@ require_once('functions.php');
 
 $json = file_get_contents('php://input');
 $obj = json_decode($json);
+$admin = true; 
 $array = [];
-$array = [$obj->nome, $obj->cpf, $obj->login, $obj->senha];
+$array = [$obj->nome, $obj->cpf, $obj->login, $obj->senha, $admin];
 
 $resultado = insertClientePhp($conection, $array);
 
