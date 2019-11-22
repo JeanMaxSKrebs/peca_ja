@@ -24,29 +24,3 @@ if (isset($cadastro)) {
     }
 }
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cadastro</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-
-<body>
-    <div class="cadastro">
-        <h1>Cadastro</h1>
-        <br>
-        <form action="cadastro.php" method="post">
-            Nome:<input type="text" name="nome">
-            CPF:<input type="number" name="cpf"><br><br>
-            Login:<input type="text" name="login">
-            Senha:<input type="password" name="senha"><br><br>
-            <input type="submit" name="cadastro" value="Cadastrar">
-        </form>
-    </div>
-</body>
-
-</html>
