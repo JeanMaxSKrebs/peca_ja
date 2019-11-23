@@ -34,11 +34,15 @@ if (!(empty($usuario) or empty($senha))) // testa se os campos do formulário n�
 		$_SESSION['login'] = $tipoUsuario['login'];
 		$_SESSION['admin'] = $tipoUsuario['admin'];
     }
+    if($tipoUsuario==null)
+    {
+        $retorno = array('sucesso' => false, 'null'=> true, 'mensagem' => 'inexistente no banco');
+    }
 
   
 } else  // else correspondente ao resultado da função !empty
 {
-    $retorno = array('sucesso' => false, 'mensagem' => 'campos vazios');
+    $retorno = array('sucesso' => false, 'null'=> false, 'mensagem' => 'campos vazios');
 }
 
 echo json_encode($retorno);
