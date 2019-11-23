@@ -21,7 +21,21 @@ function autentica() {
         })
 }
 function validaSessao(){
-    alert("Seja Bem-Vindo".$_SESSION['nome'])
-    $_SESSION['login']
-    $_SESSION['admin']
+
+    let url = `../servicos/valida_sessao.php`
+
+    axios.get(url)
+    .then(resp => {
+        console.log('Recebendo dados!');
+        if (resp) {
+            if (resp.data.sucesso == true) {
+                
+            }
+            else
+            {
+                window.location.href = `../estrutura/index.html`
+            }
+        }
+    })
+    
 }

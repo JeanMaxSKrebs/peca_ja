@@ -40,6 +40,6 @@ if (!(empty($usuario) or empty($senha))) // testa se os campos do formulÃ¡rio nÃ
 {
     $retorno = array('sucesso' => false, 'mensagem' => 'campos vazios');
 }
-echo json_encode($retorno);
 
+echo json_encode($retorno);
 ?>
