@@ -14,6 +14,8 @@ $destinatario = $obj->login;
 
 $resultado = insertClientePhp($conection, $array);
 
+require_once('envia_email.php');
+
 if($resultado)
 {
 	$verifica = 'true'	;
