@@ -37,5 +37,18 @@ function validaSessao(){
             }
         }
     })
-    
+}
+function sairSessao(){
+
+    let url = `../servicos/sair_sessao.php`
+
+    axios.get(url)
+    .then(resp=>{
+        console.log('Recebendo dados!');
+        if(resp){
+           if(resp.data.sucesso==true){
+                window.location.href = `../estrutura/index.html`
+           }
+        }
+    })
 }
