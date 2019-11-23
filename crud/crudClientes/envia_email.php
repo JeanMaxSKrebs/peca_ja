@@ -57,7 +57,7 @@ $mail = new PHPMailer();
 
     $mail->Subject = "Sobre Nós";
 
-    $mail->Body = $mensagem . "<br> <h1>Peça Já</h1><h2>Gerenciador de Pedidos de Fast-Food Online</h2>
+    $mail->Body = "<br> <h1>Peça Já</h1><h2>Gerenciador de Pedidos de Fast-Food Online</h2>
     <h1>Cadastro</h1> <br> <p> Nós somos um empresa de entrega de pedidos automático,
     para que você não precise se preocupar em ter que fazer um pedido
     com um garçom e ser mais rapido e mais barato para o restaurante,
