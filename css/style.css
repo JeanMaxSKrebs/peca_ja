@@ -31,6 +31,15 @@ div.cadastro {
 
 /*modais*/
 
+#modal_clientebg{
+    position: absolute;
+    display: none;
+}
+
+#modal_cliente{
+    display: none;
+}
+
 #add_func {
     text-align: inherit;
     display: none;

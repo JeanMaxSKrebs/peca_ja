@@ -1,4 +1,4 @@
-<?php  
+<?php
 header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
 require_once('conection.php');
@@ -14,11 +14,19 @@ $destinatario = $obj->login;
 
 $resultado = insertClientePhp($conection, $array);
 
+
 require_once('envia_email.php');
 
 if($resultado)
 {
-	$verifica = 'true'	;
+	$verifica = 'true';
+	$admin = false; 
+	session_start();
+	$_SESSION['nome'] = $obj->nome;
+	$_SESSION['login'] = $obj->login;
+	$_SESSION['admin'] = $admin;
+	var_dump($_SESSION);
+	print_r($_SESSION);die;
 }
 else
 {

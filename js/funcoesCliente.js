@@ -13,39 +13,10 @@ function insertCliente() {
         .then(resp => {
             console.log(resp)
             console.log(resp.data)
+            window.location.href = `../estrutura/site_cliente.html`
         })
     .catch(error => console.error('Erro ao tentar acessar o php:', error));
 }
-
-function imprimirJSON() {
-    resultado.innerHTML = '';
-    let url = '../aplicacao/search.php';
-
-    console.log(`Conectando a ${url}`)
-
-    let Clientes = document.getElementById('Cliente')
-        // com axios
-    axios.get(url)
-        .then(resp => {
-            console.log('Recebendo dados!');
-
-            let table = '<table>'
-            resp.data.forEach(obj => {
-                console.log(obj)
-                table += '<tr>'
-                Object.entries(obj).map(([key, value]) => {
-                    table += `<td>${value}</td>`
-                });
-                table += '</tr>'
-            });
-            Clientes.innerHTML += table + '</table>';
-        })
-        .catch(error => {
-            console.log(`Erro ao conectar:\n\n${error.message}`)
-            console.log(error)
-        });
-}
-
 
 function buscaCliente_nomeJs() {
     resultado.innerHTML = '';
@@ -75,25 +46,6 @@ function buscaCliente_nomeJs() {
     event.preventDefault();
 }
 
-function alterClienteJs() {
-    event.preventDefault();
-
-    let busca = alter.busca.value;
-    let url = `../aplicacao/search_altera.php?busca=${busca}`;
-    console.log(`Conectando a ${url}`)
-
-    axios.get(url, { query: { busca } })
-        .then(resp => {
-            attForm.style.display = 'block';
-            att.nome.value = resp.data.nome;
-            att.cpf.value = resp.data.cpf;
-            att.login.value = resp.data.login;
-            att.senha.value = resp.data.senha;
-        })
-        .catch(error => console.error('Erro ao tentar acessar o php:', error));
-
-}
-
 function attClienteJs() {
     event.preventDefault();
 
@@ -114,6 +66,26 @@ function attClienteJs() {
 
 }
 
+function alterClienteJs() {
+    event.preventDefault();
+
+    let busca = alter.busca.value;
+    let url = `../aplicacao/search_altera.php?busca=${busca}`;
+    console.log(`Conectando a ${url}`)
+
+    axios.get(url, { query: { busca } })
+        .then(resp => {
+            attForm.style.display = 'block';
+            att.nome.value = resp.data.nome;
+            att.cpf.value = resp.data.cpf;
+            att.login.value = resp.data.login;
+            att.senha.value = resp.data.senha;
+        })
+        .catch(error => console.error('Erro ao tentar acessar o php:', error));
+
+}
+
+
 function deleteClienteJs() {
     event.preventDefault();
 
@@ -132,4 +104,10 @@ var Clientes = function(nome, cpf, login, senha, busca) {
     this.cpf = cpf;
     this.login = login;
     this.senha = senha;
+}
+
+// MODAIS
+
+function perfil(){
+    
 }
