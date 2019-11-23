@@ -17,6 +17,16 @@ function autentica() {
                 if (resp.data.sucesso == true) {
                     window.location = `site_${resp.data.usuario}.html`
                 }
+                else
+                {
+                    if(resp.data.null == true) {
+                        window.location.href = `../estrutura/cadastro.html`
+                    }
+                    else
+                    {
+                        window.location.href = `../estrutura/index.html`
+                    }
+                }
             }
         })
 }
