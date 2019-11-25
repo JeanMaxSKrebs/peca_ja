@@ -42,14 +42,14 @@ function envia() {
     resultado.innerHTML = ""
 
     let url = '../crud/crudPedidos/envia.php'
-    console.log(`Conectando a $ { url }`)
+    console.log(`Conectando a ${url}`)
 
     axios.post(url)
         .then(resp => {
             console.log('Recebendo dados!')
         })
         .catch(error => {
-            console.log(`Erro ao conectar: \n\ n$ { error.message }`)
+            console.log(`Erro ao conectar: \n\n${error.message}`)
             console.log(error)
         });
     pedidoProdutos = []
@@ -60,7 +60,7 @@ function exibePedidos() {
 
     let url = '../crud/crudProdutos/search_produto.php'
 
-    console.log(`Conectando a $ { url }`)
+    console.log(`Conectando a ${url}`)
     let grid = document.querySelector("#grid")
     grid.innerHTML = ''
 
@@ -125,4 +125,58 @@ function exibePedidos() {
             console.log(`Erro ao conectar:\n\n${error.message}`)
             console.log(error)
         });
+}
+
+function mostraPedidos(){
+
+    let url = '../crud/crudPedidos/search_pedido.php'
+
+    console.log(`Conectando a ${url}`)
+
+    let grid = document.querySelector("#grid")
+    grid.innerHTML = ''
+
+    axios.get(url)
+        .then(resp => {
+            console.log('Recebendo dados!')
+
+
+
+            listaPedidos = resp.data
+            
+            // console.log(resp.data)
+
+            console.log(listaPedidos)
+
+            listaPedidos.forEach(obj => {
+                var row = document.createElement("div")
+                row.style.backgroundColor = "#8FBC8F";
+                row.setAttribute("class", "row row-12")
+                row.style.border = "solid 1px"
+                row.style.padding = "5px"
+                row.style.margin = "3px"
+                grid.appendChild(row)
+                Object.entries(obj).forEach(([key, value])=>{
+                    let col = document.createElement("div")
+                    col.setAttribute("class", "col")
+                    col.textContent = key + ": " + value
+                    console.log(key + " " + value)
+                    row.appendChild(col)
+                })
+                let button = document.createElement("button")
+                button.textContent = "📋"
+                button.setAttribute("class", "btn btn-success")
+                button.onclick = function() {
+                    arrayPedido.push(obj)
+                    pedido(arrayPedido)
+                }
+                row.appendChild(button)
+            })
+        })
+        .catch(error => {
+            console.log(`Erro ao conectar:\n\n${error.message}`)
+            console.log(error)
+        });
+
+
 }

@@ -108,6 +108,24 @@ function pedidoProduto(array $commands, array $multi_parameters, $sequence = NUL
     }
     
 }
+
+function mostraPedido($conection){
+    try {
+        $query = $conection->prepare("select produtos.nome, pp.cod_produto, pedidos.cod_clientes, pp.cod_pedidos from produtos inner join pedido_produto pp
+        on(produtos.codigo=pp.cod_produto) inner join pedidos on(pp.cod_pedidos=pedidos.codigo) ORDER BY pedidos.codigo;");
+
+        // select cod_pedidos, count(*) from pedido_produto group by cod_pedidos
+
+
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    } catch (PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
+
+}
 // public PDO::lastInsertId ([ string $name = NULL ] ) : string
 
 
