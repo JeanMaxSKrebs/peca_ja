@@ -169,11 +169,9 @@ function mostraPedidos(){
                 info.textContent = "ℹ️"
                 info.setAttribute("class", "btn btn-light")
                 info.onclick = function () {
-                    let background = modalBuscaProdutos(this)
-                    let oi = buscaProdutos(Object.values(obj)[0])
-                    console.log(oi)
+                    let modalPedido = modalBuscaProdutos(obj)
                     let body = document.querySelector('body')
-                    body.appendChild(background)
+                    body.appendChild(modalPedido)
                 }
                 let col = document.createElement("div")
                 col.setAttribute("class", "col-md-12 col-lg")
@@ -188,6 +186,7 @@ function mostraPedidos(){
 
 
 }
+let produtosDoPedido = []
 
 function buscaProdutos(codigoPedido)
 {
@@ -198,21 +197,38 @@ function buscaProdutos(codigoPedido)
     let url = '../crud/crudPedidos/search_pedido.php'
 
     console.log(`Conectando a ${url}`)
+    let grid = document.createElement("grid")
+    grid.innerHTML = ''
 
     axios.post(url, dataForm)
         .then(resp => {
             console.log('Recebendo dados!')
         
-            pedido = resp.data
-
-            pedido.forEach
+            produtosDoPedido = resp.data
+            // console.log(produtosDoPedido)
+            produtosDoPedido.forEach(obj => {
+                var row = document.createElement("div")
+                row.style.backgroundColor = "#8FBC8F";
+                row.setAttribute("class", "row")
+                row.style.border = "solid 1px"
+                row.style.padding = "5px"
+                row.style.margin = "5px"
+                grid.appendChild(row)
+                
+                Object.entries(obj).forEach(([key, value])=>{
+                    let col = document.createElement("div")
+                    col.setAttribute("class", "col")
+                    col.textContent = key + ": " + value
+                    // console.log(key + " " + value)
+                    row.appendChild(col)
+                })
+            })
         })
-
+        return grid
 }
-function modalBuscaProdutos(){
+function modalBuscaProdutos(obj){
 
     let div = document.createElement("div")
-    // div.setAttribute("class", "container")
     div.style.position = "fixed"
     div.style.top = "0px"
     div.style.backgroundColor = "transparent"
@@ -226,14 +242,21 @@ function modalBuscaProdutos(){
     conteudo.style.width = "50vw"
     conteudo.style.height = "50vh"
 
+    let produtos = buscaProdutos(Object.values(obj)[0])
+    
     let sair = document.createElement("button")
     sair.textContent = "Fechar"
+    sair.setAttribute("class", "btn btn-danger")
     sair.onclick = function(){
         div.style.display = "none"
     }
 
 
+
+
     conteudo.appendChild(sair)
+    conteudo.appendChild(produtos)
+    // conteudo.appendChild(aceita)
     div.appendChild(conteudo)
     return div;
 
