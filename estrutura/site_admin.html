@@ -23,196 +23,196 @@
             <hr>
         </div>
         <div class="container">
-            <grid class="row">
-                <div id="gridProdutos" class="col">
-                    <button class="btn btn-success" onclick="mostraProdutos()">Mostra Produtos</button>
-                    <br><br>
-                    <button class="btn btn-success" onclick="mostra_adiciona_produto();insereCategoriaAdiciona()">Add Produto</button>
-                    <br><br>
-                    <button class="btn btn-success" onclick="mostra_altera_produto()">Altera Produto</button>
-                    <br><br>
-                    <button class="btn btn-success" onclick="mostra_deleta_produto()">Deleta Produto</button>
-                    <hr>
-                    <modais>
-                        <div id="add_prod">
-                            <!-- modal insert produtos -->
-                            <form name="insertProdutos" method="post" onsubmit="insertProdutosJs()">
-                                <input class="form-control" type="text" name="nome" placeholder="Nome"><br>
-                                <input class="form-control form-control-sm" type="numeric" name="valor" placeholder="Valor"><br>
-                                <select id="selectAdiciona" name="categoria" class="custom-select">
-                                        <option selected>Categoria</option>
-                                </select><br><br>
-                                <input class="form-control" type="text" name="desconto" placeholder="Desconto"> <br>
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="inputGroupFile01" style="text-align: left!important">Choose file</label>
-                                    </div>
+        <grid class="row">
+            <div id="gridProdutos" class="col">
+                <button class="btn btn-success" onclick="mostraProdutos()">Mostra Produtos</button>
+                <br><br>
+                <button class="btn btn-success" onclick="mostra_adiciona_produto();insereCategoriaAdiciona()">Add Produto</button>
+                <br><br>
+                <button class="btn btn-success" onclick="mostra_altera_produto()">Altera Produto</button>
+                <br><br>
+                <button class="btn btn-success" onclick="mostra_deleta_produto()">Deleta Produto</button>
+                <hr>
+                <modais>
+                    <div id="add_prod">
+                        <!-- modal insert produtos -->
+                        <form name="insertProdutos" method="post" onsubmit="insertProdutosJs()">
+                            <input class="form-control" type="text" name="nome" placeholder="Nome"><br>
+                            <input class="form-control form-control-sm" type="numeric" name="valor" placeholder="Valor"><br>
+                            <select id="selectAdiciona" name="categoria" class="custom-select">
+                                    <option selected>Categoria</option>
+                            </select><br><br>
+                            <input class="form-control" type="text" name="desconto" placeholder="Desconto"> <br>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                    <label class="custom-file-label" for="inputGroupFile01" style="text-align: left!important">Choose file</label>
                                 </div>
-                                <img name="imagem" src="../imagens/default.png" width="100vw" height="100vh" id="imagem01">
-                                <br><br>
-                                <input class="btn btn-secondary" type="submit" name="cadastro_produto" value="Cadastro Produto"><br><br>
-                            </form>
-                            <button class="btn btn-dark" onclick="fecha_adiciona_produto()">Fechar</button>
-                        </div>
-                        <div id="alter_prod">
-                            <!-- modal busca produto alter -->
-                            <form name="alterProdutos" onsubmit="alterProdutosJs();mostra_att_produto();insereCategoriaAltera()" method="post">
-                                <input class="form-control" type="text" name="busca" placeholder="Qual produto editar?"><br>
-                                <input class="btn btn-secondary" type="submit" name="altera_produto" value="Busca Produto Altera">
-                                <br><br>
-                            </form>
-                            <!-- modal alter produtos -->
-                            <form name="attProdutos" id="attForm_produto" onsubmit="attProdutosJs()" method="post">
-                                <input class="form-control" type="text" name="nome" placeholder="Nome"><br>
-                                <input class="form-control" type="numeric" name="valor" placeholder="Valor"> <br>
-                                <select id="selectAltera" class="custom-select" name="categoria">
-                                        <option selected>Categoria</option>
-                                </select><br><br>
-                                <input class="form-control" type="text" name="desconto" placeholder="Desconto"><br>
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <input class="custom-file-input" id="inputGroupFile02" type="file" aria-describedby="inputGroupFileAddon02">
-                                        <label class="custom-file-label" for="inputGroupFile02" name="label" style="text-align: left!important">Choose file</label>
-                                    </div>
+                            </div>
+                            <img name="imagem" src="../imagens/default.png" width="100vw" height="100vh" id="imagem01">
+                            <br><br>
+                            <input class="btn btn-secondary" type="submit" name="cadastro_produto" value="Cadastro Produto"><br><br>
+                        </form>
+                        <button class="btn btn-dark" onclick="fecha_adiciona_produto()">Fechar</button>
+                    </div>
+                    <div id="alter_prod">
+                        <!-- modal busca produto alter -->
+                        <form name="alterProdutos" onsubmit="alterProdutosJs();mostra_att_produto();insereCategoriaAltera()" method="post">
+                            <input class="form-control" type="text" name="busca" placeholder="Qual produto editar?"><br>
+                            <input class="btn btn-secondary" type="submit" name="altera_produto" value="Busca Produto Altera">
+                            <br><br>
+                        </form>
+                        <!-- modal alter produtos -->
+                        <form name="attProdutos" id="attForm_produto" onsubmit="attProdutosJs()" method="post">
+                            <input class="form-control" type="text" name="nome" placeholder="Nome"><br>
+                            <input class="form-control" type="numeric" name="valor" placeholder="Valor"> <br>
+                            <select id="selectAltera" class="custom-select" name="categoria">
+                                    <option selected>Categoria</option>
+                            </select><br><br>
+                            <input class="form-control" type="text" name="desconto" placeholder="Desconto"><br>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input class="custom-file-input" id="inputGroupFile02" type="file" aria-describedby="inputGroupFileAddon02">
+                                    <label class="custom-file-label" for="inputGroupFile02" name="label" style="text-align: left!important">Choose file</label>
                                 </div>
-                                <img name="imagem" src="../imagens/default.png" width="100vw" height="100vh" id="imagem02">
-                                <br><br>
-                                <input class="btn btn-secondary" type="submit" name="att_produto" value="Att Produto">
-                                <br><br>
-                            </form>
-                            <button class="btn btn-dark" onclick="fecha_altera_produto()">Fechar</button>
-                        </div>
-                        <div id="delete_prod">
-                            <!-- modal delete produtos -->
-                            <form name="deleteProdutos" method="post" onsubmit="deleteProdutosJs()">
-                                <input class="form-control" type="text" name="busca" placeholder="Qual produto deletar?"><br>
-                                <input class="btn btn-secondary" type="submit" name="deleta_produto" value="Deleta Produto">
-                            </form>
+                            </div>
+                            <img name="imagem" src="../imagens/default.png" width="100vw" height="100vh" id="imagem02">
+                            <br><br>
+                            <input class="btn btn-secondary" type="submit" name="att_produto" value="Att Produto">
+                            <br><br>
+                        </form>
+                        <button class="btn btn-dark" onclick="fecha_altera_produto()">Fechar</button>
+                    </div>
+                    <div id="delete_prod">
+                        <!-- modal delete produtos -->
+                        <form name="deleteProdutos" method="post" onsubmit="deleteProdutosJs()">
+                            <input class="form-control" type="text" name="busca" placeholder="Qual produto deletar?"><br>
+                            <input class="btn btn-secondary" type="submit" name="deleta_produto" value="Deleta Produto">
+                        </form>
+                        <br>
+                        <button class="btn btn-dark" onclick="fecha_deleta_produto()">Fechar</button>
+                    </div>
+                </modais>
+                <hr>
+                <br>
+            </div>
+            <div id="gridCategorias" class="col">
+                <button class="btn btn-danger" onclick="mostraCategorias()">Mostra Categorias</button>
+                <br><br>
+                <button class="btn btn-danger" onclick="mostra_adiciona_categoria()">Add Categoria</button>
+                <br><br>
+                <button class="btn btn-danger" onclick="mostra_altera_categoria()">Altera Categoria</button>
+                <br><br>
+                <button class="btn btn-danger" onclick="mostra_deleta_categoria()">Deleta Categoria</button>
+                <hr>
+                <modais>
+                    <div id="add_categ">
+                        <!-- modal insert categorias -->
+                        <form name="insertCategorias" method="post" onsubmit="insertCategoriasJs()">
+                            <input class="form-control" type="text" name="tipo" placeholder="Categoria"> <br>
+                            <input class="btn btn-secondary" type="submit" name="cadastro_categoria" value="Cadastro Categoria">
+                        </form>
+                        <br>
+                        <button class="btn btn-dark" onclick="fecha_adiciona_categoria()">Fechar</button> <br><br>
+                    </div>
+                    <div id="alter_categ">
+                        <!-- modal busca categorias alter -->
+                        <form name="alterCategorias" onsubmit="alterCategoriasJs();mostra_att_categoria()" method="post">
+                            <input class="form-control" type="text" name="busca" placeholder="Qual categoria editar?"><br>
+                            <input class="btn btn-secondary" type="submit" name="altera_categoria" value="Busca Categoria Altera">
+                        </form>
+                        <br>
+                        <!-- modal alter categorias -->
+                        <form name="attCategorias" id="attForm_categoria" onsubmit="attCategoriasJs()" method="post">
+                            <input class="form-control" type="text" name="nome" placeholder="Nome">
                             <br>
-                            <button class="btn btn-dark" onclick="fecha_deleta_produto()">Fechar</button>
-                        </div>
-                    </modais>
-                    <hr>
-                    <br>
-                </div>
-                <div id="gridCategorias" class="col">
-                    <button class="btn btn-danger" onclick="mostraCategorias()">Mostra Categorias</button>
-                    <br><br>
-                    <button class="btn btn-danger" onclick="mostra_adiciona_categoria()">Add Categoria</button>
-                    <br><br>
-                    <button class="btn btn-danger" onclick="mostra_altera_categoria()">Altera Categoria</button>
-                    <br><br>
-                    <button class="btn btn-danger" onclick="mostra_deleta_categoria()">Deleta Categoria</button>
-                    <hr>
-                    <modais>
-                        <div id="add_categ">
-                            <!-- modal insert categorias -->
-                            <form name="insertCategorias" method="post" onsubmit="insertCategoriasJs()">
-                                <input class="form-control" type="text" name="tipo" placeholder="Categoria"> <br>
-                                <input class="btn btn-secondary" type="submit" name="cadastro_categoria" value="Cadastro Categoria">
-                            </form>
+                            <input class="btn btn-secondary" type="submit" name="att_categoria" value="Altera Categoria">
+                            <br><br>
+                        </form>
+                        <button class="btn btn-dark" onclick="fecha_altera_categoria()">Fechar</button>
+                    </div>
+                    <div id="delete_categ">
+                        <!-- modal delete categorias -->
+                        <form name="deleteCategorias" method="post" onsubmit="deleteCategoriasJs()">
+                            <input class="form-control" type="text" name="busca" placeholder="Qual categoria deletar?"><br>
+                            <input class="btn btn-secondary" type="submit" name="deleta_categoria" value="Deleta Categoria">
+                        </form>
+                        <br>
+                        <button class="btn btn-dark" onclick="fecha_deleta_categoria()">Fechar</button>
+                    </div>
+                </modais>
+                <hr>
+                <br>
+            </div>
+            <div id="gridFuncionarios" class="col">
+                <button class="btn btn-success" onclick="mostraFuncionarios()">Mostra Funcionários</button>
+                <br><br>
+                <button class="btn btn-success" onclick="mostra_adiciona_funcionario()">Add Funcionário</button>
+                <br><br>
+                <button class="btn btn-success" onclick="mostra_altera_funcionario()">Altera Funcionário</button>
+                <br><br>
+                <button class="btn btn-success" onclick="mostra_deleta_funcionario()">Deleta Funcionário</button>
+                <hr>
+                <modais>
+                    <div id="add_func">
+                        <!-- modal insert funcionarios -->
+                        <form name="insertFuncionarios" method="post" onsubmit="insertFuncionariosJs()">
+                            <input class="form-control" type="text" name="nome" placeholder="Nome"><br>
+                            <input class="form-control" type="number" name="cpf" placeholder="CPF"><br>
+                            <input class="form-control" type="number" name="salario" placeholder="Salário"><br>
+                            <select class="form-control" name="tipo">
+                                <option value="">Tipo</option>
+                                <option>gerente</option>
+                                <option>comum</option>
+                            </select><br>
+                            <input class="form-control" type="text" name="endereco" placeholder="Endereço"><br>
+                            <input class="form-control" type="text" name="login" placeholder="Login"><br>
+                            <input class="form-control" type="password" name="senha" placeholder="Senha"><br>
+                            <input class="btn btn-secondary" type="submit" name="cadastro_funcionario" value="Cadastro Funcionario">
                             <br>
-                            <button class="btn btn-dark" onclick="fecha_adiciona_categoria()">Fechar</button> <br><br>
-                        </div>
-                        <div id="alter_categ">
-                            <!-- modal busca categorias alter -->
-                            <form name="alterCategorias" onsubmit="alterCategoriasJs();mostra_att_categoria()" method="post">
-                                <input class="form-control" type="text" name="busca" placeholder="Qual categoria editar?"><br>
-                                <input class="btn btn-secondary" type="submit" name="altera_categoria" value="Busca Categoria Altera">
-                            </form>
+                        </form>
+                        <br>
+                        <button class="btn btn-dark" onclick="fecha_adiciona_funcionario()">Fechar</button>
+                    </div>
+                    <div id="alter_func">
+                        <!-- modal busca funcionarios alter -->
+                        <form name="alterFuncionarios" onsubmit="alterFuncionariosJs();mostra_att_funcionario()" method="post">
+                            <input class="form-control" type="text" name="busca" placeholder="Qual funcionário editar?"><br>
+                            <input class="btn btn-secondary" type="submit" name="altera_funcionario" value="Busca Funcionario Altera">
                             <br>
-                            <!-- modal alter categorias -->
-                            <form name="attCategorias" id="attForm_categoria" onsubmit="attCategoriasJs()" method="post">
-                                <input class="form-control" type="text" name="nome" placeholder="Nome">
-                                <br>
-                                <input class="btn btn-secondary" type="submit" name="att_categoria" value="Altera Categoria">
-                                <br><br>
-                            </form>
-                            <button class="btn btn-dark" onclick="fecha_altera_categoria()">Fechar</button>
-                        </div>
-                        <div id="delete_categ">
-                            <!-- modal delete categorias -->
-                            <form name="deleteCategorias" method="post" onsubmit="deleteCategoriasJs()">
-                                <input class="form-control" type="text" name="busca" placeholder="Qual categoria deletar?"><br>
-                                <input class="btn btn-secondary" type="submit" name="deleta_categoria" value="Deleta Categoria">
-                            </form>
+                        </form>
+                        <!-- modal alter funcionarios -->
+                        <form name="attFuncionarios" id="attForm_funcionario" onsubmit="attFuncionariosJs()" method="post">
                             <br>
-                            <button class="btn btn-dark" onclick="fecha_deleta_categoria()">Fechar</button>
-                        </div>
-                    </modais>
-                    <hr>
-                    <br>
-                </div>
-                <div id="gridFuncionarios" class="col">
-                    <button class="btn btn-success" onclick="mostraFuncionarios()">Mostra Funcionários</button>
-                    <br><br>
-                    <button class="btn btn-success" onclick="mostra_adiciona_funcionario()">Add Funcionário</button>
-                    <br><br>
-                    <button class="btn btn-success" onclick="mostra_altera_funcionario()">Altera Funcionário</button>
-                    <br><br>
-                    <button class="btn btn-success" onclick="mostra_deleta_funcionario()">Deleta Funcionário</button>
-                    <hr>
-                    <modais>
-                        <div id="add_func">
-                            <!-- modal insert funcionarios -->
-                            <form name="insertFuncionarios" method="post" onsubmit="insertFuncionariosJs()">
-                                <input class="form-control" type="text" name="nome" placeholder="Nome"><br>
-                                <input class="form-control" type="number" name="cpf" placeholder="CPF"><br>
-                                <input class="form-control" type="number" name="salario" placeholder="Salário"><br>
-                                <select class="form-control" name="tipo">
-                                   <option value="">Tipo</option>
-                                   <option>gerente</option>
-                                   <option>comum</option>
-                               </select><br>
-                                <input class="form-control" type="text" name="endereco" placeholder="Endereço"><br>
-                                <input class="form-control" type="text" name="login" placeholder="Login"><br>
-                                <input class="form-control" type="password" name="senha" placeholder="Senha"><br>
-                                <input class="btn btn-secondary" type="submit" name="cadastro_funcionario" value="Cadastro Funcionario">
-                                <br>
-                            </form>
-                            <br>
-                            <button class="btn btn-dark" onclick="fecha_adiciona_funcionario()">Fechar</button>
-                        </div>
-                        <div id="alter_func">
-                            <!-- modal busca funcionarios alter -->
-                            <form name="alterFuncionarios" onsubmit="alterFuncionariosJs();mostra_att_funcionario()" method="post">
-                                <input class="form-control" type="text" name="busca" placeholder="Qual funcionário editar?"><br>
-                                <input class="btn btn-secondary" type="submit" name="altera_funcionario" value="Busca Funcionario Altera">
-                                <br>
-                            </form>
-                            <!-- modal alter funcionarios -->
-                            <form name="attFuncionarios" id="attForm_funcionario" onsubmit="attFuncionariosJs()" method="post">
-                                <br>
-                                <input class="form-control" type="text" name="nome" placeholder="Nome"><br>
-                                <input class="form-control" type="number" name="cpf" placeholder="CPF"><br>
-                                <input class="form-control" type="number" name="salario" placeholder="Salário"><br>
-                                <select class="form-control" name="tipo">
-                                        <option value="">Tipo</option>
-                                        <option>gerente</option>
-                                        <option>comum</option>
-                               </select><br>
-                                <input class="form-control" type="text" name="endereco" placeholder="Endereço"><br>
-                                <input class="form-control" type="text" name="login" placeholder="Login"><br>
-                                <input class="form-control" type="password" name="senha" placeholder="Senha"><br>
-                                <input class="btn btn-secondary" type="submit" name="altera_funcionario" value="Altera Funcionario">
-                            </form>
-                            <br>
-                            <button class="btn btn-dark" onclick="fecha_altera_funcionario()">Fechar</button>
-                        </div>
-                        <div id="delete_func">
-                            <!-- modal delete funcionarios -->
-                            <form name="deleteFuncionarios" method="post" onsubmit="deleteFuncionariosJs()">
-                                <input class="form-control" type="text" name="busca" placeholder="Qual funcionário deletar?"><br>
-                                <input class="btn btn-secondary" type="submit" name="deleta_funcionário" value="Deleta Funcionário">
-                            </form>
-                            <br>
-                            <button class="btn btn-dark" onclick="fecha_deleta_funcionario()">Fechar</button>
-                        </div>
-                    </modais>
-                    <hr>
-                </div>
-            </grid>
+                            <input class="form-control" type="text" name="nome" placeholder="Nome"><br>
+                            <input class="form-control" type="number" name="cpf" placeholder="CPF"><br>
+                            <input class="form-control" type="number" name="salario" placeholder="Salário"><br>
+                            <select class="form-control" name="tipo">
+                                    <option value="">Tipo</option>
+                                    <option>gerente</option>
+                                    <option>comum</option>
+                            </select><br>
+                            <input class="form-control" type="text" name="endereco" placeholder="Endereço"><br>
+                            <input class="form-control" type="text" name="login" placeholder="Login"><br>
+                            <input class="form-control" type="password" name="senha" placeholder="Senha"><br>
+                            <input class="btn btn-secondary" type="submit" name="altera_funcionario" value="Altera Funcionario">
+                        </form>
+                        <br>
+                        <button class="btn btn-dark" onclick="fecha_altera_funcionario()">Fechar</button>
+                    </div>
+                    <div id="delete_func">
+                        <!-- modal delete funcionarios -->
+                        <form name="deleteFuncionarios" method="post" onsubmit="deleteFuncionariosJs()">
+                            <input class="form-control" type="text" name="busca" placeholder="Qual funcionário deletar?"><br>
+                            <input class="btn btn-secondary" type="submit" name="deleta_funcionário" value="Deleta Funcionário">
+                        </form>
+                        <br>
+                        <button class="btn btn-dark" onclick="fecha_deleta_funcionario()">Fechar</button>
+                    </div>
+                </modais>
+                <hr>
+            </div>
+        </grid>
         </div>
         <div class="container-fluid">
             <grid class="row">
