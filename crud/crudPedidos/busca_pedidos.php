@@ -4,11 +4,14 @@ header('Access-Control-Allow-Origin: *');
 require_once('conexao.php');
 require_once('functions.php');
 
-    $pedido = $_POST['codigo'];
-    $array = [];
-    $array = [$pedido];
-    $resultado = buscaProduto($conection, $array);
 
+$resultado = mostraPedido($conection);
+
+if($resultado) {
     echo json_encode($resultado);
+} else {
+	echo("Não existem pedidos no banco");
+}
+
 
 ?>

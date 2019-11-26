@@ -126,10 +126,11 @@ function exibePedidos() {
             console.log(error)
         });
 }
+let listaPedidos = []
 
 function mostraPedidos(){
 
-    let url = '../crud/crudPedidos/search_pedido.php'
+    let url = '../crud/crudPedidos/busca_pedidos.php'
 
     console.log(`Conectando a ${url}`)
 
@@ -140,37 +141,44 @@ function mostraPedidos(){
         .then(resp => {
             console.log('Recebendo dados!')
 
-
-
-            listaPedidos = resp.data
+            let listaPedidos = resp.data
             
             // console.log(resp.data)
 
-            console.log(listaPedidos)
+            // console.log(listaPedidos)
 
             listaPedidos.forEach(obj => {
                 var row = document.createElement("div")
                 row.style.backgroundColor = "#8FBC8F";
-                row.setAttribute("class", "row row-12")
+                row.setAttribute("class", "row")
                 row.style.border = "solid 1px"
                 row.style.padding = "5px"
-                row.style.margin = "3px"
+                row.style.margin = "3px 25vh"
                 grid.appendChild(row)
+                
                 Object.entries(obj).forEach(([key, value])=>{
                     let col = document.createElement("div")
                     col.setAttribute("class", "col")
                     col.textContent = key + ": " + value
-                    console.log(key + " " + value)
+                    // console.log(key + " " + value)
                     row.appendChild(col)
+
                 })
-                let button = document.createElement("button")
-                button.textContent = "📋"
-                button.setAttribute("class", "btn btn-success")
-                button.onclick = function() {
-                    arrayPedido.push(obj)
-                    pedido(arrayPedido)
+                
+                let info = document.createElement("button")
+                info.textContent = "ℹ️"
+                info.setAttribute("class", "btn btn-light")
+                info.onclick = function () {
+                    let background = modalBuscaProdutos(this)
+                    let oi = buscaProdutos(Object.values(obj)[0])
+                    console.log(oi)
+                    let body = document.querySelector('body')
+                    body.appendChild(background)
                 }
-                row.appendChild(button)
+                let col = document.createElement("div")
+                col.setAttribute("class", "col-md-12 col-lg")
+                col.appendChild(info)
+                row.appendChild(col)
             })
         })
         .catch(error => {
@@ -178,5 +186,55 @@ function mostraPedidos(){
             console.log(error)
         });
 
+
+}
+
+function buscaProdutos(codigoPedido)
+{
+    const dataForm = new FormData();
+
+    dataForm.append('codigo', codigoPedido)
+
+    let url = '../crud/crudPedidos/search_pedido.php'
+
+    console.log(`Conectando a ${url}`)
+
+    axios.post(url, dataForm)
+        .then(resp => {
+            console.log('Recebendo dados!')
+        
+            pedido = resp.data
+
+            pedido.forEach
+        })
+
+}
+function modalBuscaProdutos(){
+
+    let div = document.createElement("div")
+    // div.setAttribute("class", "container")
+    div.style.position = "fixed"
+    div.style.top = "0px"
+    div.style.backgroundColor = "transparent"
+    div.style.width = "100vw"
+    div.style.height = "100vh"
+
+    let conteudo = document.createElement("div")
+    conteudo.setAttribute("class", "container")
+    conteudo.style.marginTop = "25vh"
+    conteudo.style.backgroundColor = "red"
+    conteudo.style.width = "50vw"
+    conteudo.style.height = "50vh"
+
+    let sair = document.createElement("button")
+    sair.textContent = "Fechar"
+    sair.onclick = function(){
+        div.style.display = "none"
+    }
+
+
+    conteudo.appendChild(sair)
+    div.appendChild(conteudo)
+    return div;
 
 }
