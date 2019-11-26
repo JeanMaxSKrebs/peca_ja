@@ -22,7 +22,7 @@ function buscaCliente_nomeJs() {
     resultado.innerHTML = '';
     let busca_nome = document.getElementById('busca_nome');
     let busca = document.getElementById('nome_busca_cliente').value;
-    let url = `../aplicacao/search_nome.php?busca=${busca}`;
+    let url = `../crud/crudClientes/search_nome.php?busca=${busca}`;
     console.log(`Conectando a ${url}`)
 
     axios.get(url, { query: { busca } })
@@ -70,7 +70,7 @@ function alterClienteJs() {
     event.preventDefault();
 
     let busca = alter.busca.value;
-    let url = `../aplicacao/search_altera.php?busca=${busca}`;
+    let url = `../crud/crudClientes/search_altera.php?busca=${busca}`;
     console.log(`Conectando a ${url}`)
 
     axios.get(url, { query: { busca } })
@@ -109,5 +109,11 @@ var Clientes = function(nome, cpf, login, senha, busca) {
 // MODAIS
 
 function perfil(){
-    
+    let perfilBG = document.querySelector('#perfilBG')
+    perfilBG.style.display = 'block'
+}
+
+function fechaPerfil(){
+    let perfilBG = document.querySelector('#perfilBG')
+    perfilBG.style.display = 'none'
 }
