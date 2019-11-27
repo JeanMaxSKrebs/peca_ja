@@ -227,7 +227,6 @@ function buscaProdutos(codigoPedido)
         return grid
 }
 function modalBuscaProdutos(obj){
-
     let div = document.createElement("div")
     div.style.position = "fixed"
     div.style.top = "0px"
@@ -238,7 +237,7 @@ function modalBuscaProdutos(obj){
     let conteudo = document.createElement("div")
     conteudo.setAttribute("class", "container")
     conteudo.style.marginTop = "25vh"
-    conteudo.style.backgroundColor = "red"
+    conteudo.style.backgroundColor = "#ed9a3e"
     conteudo.style.width = "50vw"
     conteudo.style.height = "50vh"
 
@@ -251,13 +250,35 @@ function modalBuscaProdutos(obj){
         div.style.display = "none"
     }
 
-
+    let aceita = document.createElement("button")
+    aceita.textContent = "Pegar Pedido"
+    aceita.setAttribute("class", "btn btn-success")
+    aceita.onclick = function(){
+        div.style.display = "none"
+        updatepedidos(Object.values(obj)[0])//é o código do pedido
+        mostraPedidos()
+    }
 
 
     conteudo.appendChild(sair)
     conteudo.appendChild(produtos)
-    // conteudo.appendChild(aceita)
+    conteudo.appendChild(aceita)
     div.appendChild(conteudo)
     return div;
 
+}
+function updatepedidos(codigoPedido){
+    const dataForm = new FormData();
+
+    dataForm.append('codigo', codigoPedido)
+
+    let url = '../crud/crudPedidos/insert_funcionario.php'
+
+    console.log(`Conectando a ${url}`)
+
+    axios.post(url, dataForm)
+    .then(resp => {
+        console.log('Recebendo dados!')
+
+    })
 }

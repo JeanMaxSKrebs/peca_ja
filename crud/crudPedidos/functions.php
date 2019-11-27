@@ -142,5 +142,17 @@ function buscaProduto($conection, $array){
 }
 // public PDO::lastInsertId ([ string $name = NULL ] ) : string
 
+function insereFuncionarioPedido($conection, $array){
 
+    try {
+        $query = $conection->prepare("update pedidos set cod_func = ?, status = 'Em Andamento' where codigo = ?");
+        
+        $query->execute($array);
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $result;
+    } catch (PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
+}
 ?>
