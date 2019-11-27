@@ -7,12 +7,12 @@ body {
     /* background-color: #FF6347; */
     background-image: url("../imagens/sandubinha_bg.png");
     background-repeat: initial;
-    background-color: #FFE4C4;
+    /*background-color: #FFE4C4;*/
 }
 
 .jumbotron {
-    background-repeat: initial;
-    background-color: #ed9a3e;
+    background-repeat: initial;/*ed9a3e*/
+    background-color: #ffbe4f;
 }
 
 div.login {
@@ -33,7 +33,6 @@ div.cadastro {
 
 #perfilBG{
     position: fixed;
-    background-color: transparent;
     display: none;
     z-index: 2;
     width: 100vw;
@@ -41,9 +40,14 @@ div.cadastro {
 }
 
 #modalPerfil{
-    margin-top: 30vh;
-    background-color:#8FBC8F;
+    margin-top: 20vh;
+    background-color:#b3dee3;
     z-index: 3;
+    width: 70vw;
+    height: 65vh;
+    border-radius: 6px;
+    margin-left: 15vw;
+    box-shadow: gray;
 }
 
 #modal_cliente{

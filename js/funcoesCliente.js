@@ -18,26 +18,19 @@ function insertCliente() {
     .catch(error => console.error('Erro ao tentar acessar o php:', error));
 }
 
-function buscaCliente_nomeJs() {
-    resultado.innerHTML = '';
-    let busca_nome = document.getElementById('busca_nome');
-    let busca = document.getElementById('nome_busca_cliente').value;
-    let url = `../crud/crudClientes/search_nome.php?busca=${busca}`;
+function pegaSessao() {
+    resultado.innerHTML = ''
+    let url = `../crud/crudClientes/pega_sessao.php`
     console.log(`Conectando a ${url}`)
 
     axios.get(url, { query: { busca } })
         .then(resp => {
-            console.log('Recebendo dados!');
+            console.log('Recebendo dados!')
 
-            let table = '<table>'
             resp.data.forEach(obj => {
-                table += '<tr>'
                 Object.entries(obj).map(([key, value]) => {
-                    table += `<td>${value}</td>`
-                });
-                table += '</tr>'
-            });
-            busca_nome.innerHTML += table + '</table>';
+                })
+            })
         })
         .catch(error => {
             console.log(`Erro ao conectar:\n\n${error.message}`)
@@ -47,7 +40,7 @@ function buscaCliente_nomeJs() {
 }
 
 function attClienteJs() {
-    event.preventDefault();
+    event.preventDefault()
 
     resultado.innerHTML = ''; //seta a div de resultado como vazia
     let busca = alter.busca.value;
@@ -69,8 +62,7 @@ function attClienteJs() {
 function alterClienteJs() {
     event.preventDefault();
 
-    let busca = alter.busca.value;
-    let url = `../crud/crudClientes/search_altera.php?busca=${busca}`;
+    let url = `../crud/crudClientes/search_altera.php`;
     console.log(`Conectando a ${url}`)
 
     axios.get(url, { query: { busca } })
@@ -111,6 +103,8 @@ var Clientes = function(nome, cpf, login, senha, busca) {
 function perfil(){
     let perfilBG = document.querySelector('#perfilBG')
     perfilBG.style.display = 'block'
+    let corBG = document.querySelector('#modalPerfil')
+    corBG.setAttribute("class", "card")
 }
 
 function fechaPerfil(){
