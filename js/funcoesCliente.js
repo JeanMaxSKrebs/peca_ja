@@ -13,7 +13,7 @@ function insertCliente() {
         .then(resp => {
             console.log(resp)
             console.log(resp.data)
-            window.location.href = `../estrutura/site_cliente.html`
+            window.location.href = `../estrutura/index.html`
         })
     .catch(error => console.error('Erro ao tentar acessar o php:', error));
 }
@@ -23,15 +23,15 @@ function pegaSessao() {
     let url = `../crud/crudClientes/pega_sessao.php`
     console.log(`Conectando a ${url}`)
 
-    axios.get(url, { query: { busca } })
+    axios.get(url)
         .then(resp => {
             console.log('Recebendo dados!')
-
-            resp.data.forEach(obj => {
-                Object.entries(obj).map(([key, value]) => {
-                })
+                console.log(resp)
+                att.nome.value = resp.data.nome;
+                att.cpf.value = resp.data.cpf;
+                att.login.value = resp.data.login;
+                att.senha.value = resp.data.senha;
             })
-        })
         .catch(error => {
             console.log(`Erro ao conectar:\n\n${error.message}`)
             console.log(error)
