@@ -7,10 +7,9 @@ require_once('functions.php');
 session_start();
 $nome = $_SESSION['nome'];
 $login = $_SESSION['login'];
-$senha = $_SESSION['senha'];
 
 $array = [];
-$array = [$nome, $login, $senha];
+$array = ['nome'=>$nome,'login'=>$login];
 
 echo json_encode($array);
 ?>

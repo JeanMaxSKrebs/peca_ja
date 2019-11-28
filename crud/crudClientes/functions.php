@@ -10,4 +10,15 @@ function insertClientePhp($conection, $array)
         echo 'Error: ' . $e->getMessage();
     }
 }
+
+function alterClientePhp($conection, $array)
+{
+    try {
+        $query = $conection->prepare("update Clientes set nome=?, login=?, senha=? where login=?");
+        $result = $query->execute($array);
+        return $result;
+    } catch (PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
+}
 ?>

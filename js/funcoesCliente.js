@@ -28,9 +28,7 @@ function pegaSessao() {
             console.log('Recebendo dados!')
                 console.log(resp)
                 att.nome.value = resp.data.nome;
-                att.cpf.value = resp.data.cpf;
                 att.login.value = resp.data.login;
-                att.senha.value = resp.data.senha;
             })
         .catch(error => {
             console.log(`Erro ao conectar:\n\n${error.message}`)
@@ -42,36 +40,14 @@ function pegaSessao() {
 function attClienteJs() {
     event.preventDefault()
 
-    resultado.innerHTML = ''; //seta a div de resultado como vazia
-    let busca = alter.busca.value;
     let nome = att.nome.value;
-    let cpf = att.cpf.value;
     let login = att.login.value;
     let senha = att.senha.value;
-    let clientesAtt = new Clientes(nome, cpf, login, senha, busca); //instancia um novo objeto usando o construtor
-    let url = '../aplicacao/alter.php';
+    let clientesAtt = new Clientes(nome, login, senha);
+    let url = '../crud/crudClientes/alter_cliente.php';
     axios.post(url, JSON.stringify(clientesAtt))
         .then(resp => {
-            resultado.innerHTML = resp.data;
-            attForm.style.display = 'none';
-        })
-        .catch(error => console.error('Erro ao tentar acessar o php:', error));
-
-}
-
-function alterClienteJs() {
-    event.preventDefault();
-
-    let url = `../crud/crudClientes/search_altera.php`;
-    console.log(`Conectando a ${url}`)
-
-    axios.get(url, { query: { busca } })
-        .then(resp => {
-            attForm.style.display = 'block';
-            att.nome.value = resp.data.nome;
-            att.cpf.value = resp.data.cpf;
-            att.login.value = resp.data.login;
-            att.senha.value = resp.data.senha;
+            alert('sucesso')
         })
         .catch(error => console.error('Erro ao tentar acessar o php:', error));
 
@@ -90,12 +66,11 @@ function deleteClienteJs() {
 }
 
 //construtor usado no insert
-var Clientes = function(nome, cpf, login, senha, busca) {
-    this.busca = busca;
+var Clientes = function(nome, login, senha) {
     this.nome = nome;
-    this.cpf = cpf;
     this.login = login;
     this.senha = senha;
+
 }
 
 // MODAIS

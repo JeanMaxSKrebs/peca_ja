@@ -16,14 +16,25 @@
             <div id="ModalConteudo">
                 <h1>Perfil</h1>
                 <br>
-                <form name="att" id="attForm" onsubmit="attClienteJs()" method="post">
-                    <input type="text" name="nome" placeholder="Nome">
-                    <input type="text" name="login" placeholder="Login"><br><br>
-                    <input type="text" name="senha" placeholder="Senha"> <br><br>
-                    <input type="submit" name="att_Cliente" value="Att Cliente">
+                <form class="container" name="att" id="attForm" onsubmit="attClienteJs()" method="post">
+                    <div class="row justify-content-center">
+                        <input class="form-control col-6" type="text" name="nome" placeholder="Nome">
+                    </div>
+                    <br>
+                    <div class="row justify-content-center">
+                        <input class="form-control col-6" type="text" name="login" placeholder="Login">
+                    </div>
+                    <br>
+                    <div class="row justify-content-center">
+                        <input class="form-control col-6" type="password" name="senha" placeholder="Senha">
+                    </div>
+                    <br>
+                    <div class="row justify-content-center">
+                        <input class="btn btn-secondary" type="submit" name="att_Cliente" value="Atualizar Dados">
+                    </div>
                 </form>
                 <br>
-                <button onclick="fechaPerfil()">Fechar</button>
+                <button class="btn btn-secondary" onclick="fechaPerfil()">Fechar</button>
                 <br><br>
             </div>
         </div>
