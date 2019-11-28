@@ -2,6 +2,7 @@
 <?php
 require_once('./conection.php');
 require_once('../crud/funcoes.php');
+session_start();
 
 $usuario = $_POST['usuario'];
 $senha = $_POST['senha'];
@@ -18,6 +19,7 @@ if (!(empty($usuario) or empty($senha))) // testa se os campos do formulário n�
         if($tipoUsuario)
         {
             $retorno = array('sucesso' => true, 'mensagem' => 'usuário logado','usuario' => "cliente");
+            $_SESSION['cliente'] = true;
         }
         else
         {
@@ -29,11 +31,13 @@ if (!(empty($usuario) or empty($senha))) // testa se os campos do formulário n�
         }
     }
     if($tipoUsuario){
-		session_start();
 		$_SESSION['codigo'] = $tipoUsuario['codigo'];
 		$_SESSION['nome'] = $tipoUsuario['nome'];
 		$_SESSION['login'] = $tipoUsuario['login'];
-		$_SESSION['admin'] = $tipoUsuario['admin'];
+        $_SESSION['admin'] = $tipoUsuario['admin'];
+    } else
+    {
+        session_destroy();
     }
     if($tipoUsuario==null)
     {
@@ -41,8 +45,7 @@ if (!(empty($usuario) or empty($senha))) // testa se os campos do formulário n�
     }
 
   
-} else  // else correspondente ao resultado da função !empty
-{
+} else
     $retorno = array('sucesso' => false, 'null'=> false, 'mensagem' => 'campos vazios');
 }
 
