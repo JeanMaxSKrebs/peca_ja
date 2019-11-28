@@ -150,10 +150,13 @@ function mostraPedidos(){
             listaPedidos.forEach(obj => {
                 var row = document.createElement("div")
                 row.style.backgroundColor = "#8FBC8F";
+                // row.style.backgroundColor = "#FFE4C4";
                 row.setAttribute("class", "row")
                 row.style.border = "solid 1px"
                 row.style.padding = "5px"
-                row.style.margin = "3px 25vh"
+                row.style.margin = "3px 10vh"
+                row.style.border = "solid 1px rgb(0,0,0,0.125)"
+                row.style.borderRadius = ".25rem"
                 grid.appendChild(row)
                 
                 Object.entries(obj).forEach(([key, value])=>{
@@ -233,12 +236,13 @@ function modalBuscaProdutos(obj){
     div.style.backgroundColor = "transparent"
     div.style.width = "100vw"
     div.style.height = "100vh"
-
+    
     let conteudo = document.createElement("div")
     conteudo.setAttribute("class", "container")
     conteudo.style.marginTop = "25vh"
     conteudo.style.backgroundColor = "#ed9a3e"
     conteudo.style.width = "50vw"
+    conteudo.style.overflowY = "scroll"
     conteudo.style.height = "50vh"
 
     let produtos = buscaProdutos(Object.values(obj)[0])

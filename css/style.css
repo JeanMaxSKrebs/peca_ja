@@ -8,11 +8,12 @@ body {
     background-image: url("../imagens/sandubinha_bg.png");
     background-repeat: initial;
     background-color: #FFE4C4;
+    /* background-color: red; */
 }
 
 .jumbotron {
     background-repeat: initial;
-    background-color: #ed9a3e;
+    background-color: #fcb667;
 }
 
 div.login {

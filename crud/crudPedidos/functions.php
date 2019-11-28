@@ -145,7 +145,7 @@ function buscaProduto($conection, $array){
 function insereFuncionarioPedido($conection, $array){
 
     try {
-        $query = $conection->prepare("update pedidos set cod_func = ?, status = 'Em Andamento' where codigo = ?");
+        $query = $conection->prepare("update pedidos set cod_func = ?, status = 'Em Andamento' where codigo = ? order by codigo");
         
         $query->execute($array);
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
