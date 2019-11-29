@@ -193,7 +193,7 @@ function exibirProdutos() {
             let i = 0
             let id = 0
             var row = document.createElement("div")
-            row.setAttribute("class", "row justify-content-center mt-3")
+            row.setAttribute("class", "row justify-content-center")
             grid.appendChild(row)
 
             // console.log(resp.data)
@@ -203,13 +203,13 @@ function exibirProdutos() {
                 // console.log(Object.values(obj))
                 if (i == 3) {
                     row = document.createElement("div")
-                    row.setAttribute("class", "row justify-content-center mt-3")
+                    row.setAttribute("class", "row justify-content-center")
                     grid.appendChild(row)
                     i = 0
                 }
 
                 let col = document.createElement("div")
-                col.setAttribute("class", "card col-sm-12 col-md-3 ml-3 mr-3")
+                col.setAttribute("class", "card col-sm-12 col-md-3 m-3")
                 col.style.backgroundColor = "#b3dee3";/*8FBC8F*/
                 col.style.padding = "10px"
 

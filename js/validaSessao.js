@@ -1,35 +1,3 @@
-function autentica() {
-    event.preventDefault()
-
-    let usuario = acesso.usuario.value
-    let senha = acesso.senha.value
-    let url = `../servicos/autentica.php`
-
-    const dataForm = new FormData();
-
-    dataForm.append('usuario', usuario)
-    dataForm.append('senha', senha)
-
-    axios.post(url, dataForm)
-        .then(resp => {
-            console.log('Recebendo dados!');
-            if (resp) {
-                if (resp.data.sucesso == true) {
-                    window.location = `site_${resp.data.usuario}.html`
-                }
-                else
-                {
-                    if(resp.data.null == true) {
-                        window.location.href = `../estrutura/cadastro.html`
-                    }
-                    else
-                    {
-                        window.location.href = `../estrutura/index.html`
-                    }
-                }
-            }
-        })
-}
 function validaSessao(){
 
     let url = `../servicos/valida_sessao.php`
@@ -38,16 +6,14 @@ function validaSessao(){
     .then(resp => {
         console.log('Recebendo dados!');
         if (resp) {
-            if (resp.data.sucesso == true) {
-                
-            }
-            else
+            if (!resp.data.sucesso)
             {
                 window.location.href = `../estrutura/index.html`
             }
         }
     })
 }
+
 function validaSessaoCliente(){
 
     let url = `../servicos/valida_sessao_cliente.php`
@@ -56,10 +22,24 @@ function validaSessaoCliente(){
     .then(resp => {
         console.log('Recebendo dados!');
         if (resp) {
-            if (resp.data.sucesso == true) {
-                
+            if (!resp.data.sucesso)
+            {
+                window.location.href = `../estrutura/index.html`
             }
-            else
+        }
+    })
+}
+
+
+function validaSessaoFuncionario(){
+
+    let url = `../servicos/valida_sessao_funcionario.php`
+
+    axios.get(url)
+    .then(resp => {
+        console.log('Recebendo dados!');
+        if (resp) {
+            if (!resp.data.sucesso)
             {
                 window.location.href = `../estrutura/index.html`
             }
@@ -74,10 +54,7 @@ function validaSessaoAdmin(){
     .then(resp => {
         console.log('Recebendo dados!');
         if (resp) {
-            if (resp.data.sucesso == true) {
-                
-            }
-            else
+            if (!resp.data.sucesso)
             {
                 window.location.href = `../estrutura/index.html`
             }

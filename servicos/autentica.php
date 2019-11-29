@@ -1,4 +1,3 @@
-
 <?php
 require_once('./conection.php');
 require_once('../crud/funcoes.php');
@@ -13,13 +12,12 @@ if (!(empty($usuario) or empty($senha))) // testa se os campos do formulário n�
 	$tipoUsuario = validaSessaoPhp($conection, $array);
 
     if($tipoUsuario['admin']){
-		$retorno = array('sucesso' => true, 'mensagem' => 'usuário logado','usuario' => "admin");
+        $retorno = array('sucesso' => true, 'mensagem' => 'usuário logado','usuario' => "admin");
     }
     else{
         if($tipoUsuario)
         {
             $retorno = array('sucesso' => true, 'mensagem' => 'usuário logado','usuario' => "cliente");
-            $_SESSION['cliente'] = true;
         }
         else
         {
@@ -27,6 +25,7 @@ if (!(empty($usuario) or empty($senha))) // testa se os campos do formulário n�
             if($tipoUsuario)
             {
                 $retorno = array('sucesso' => true, 'mensagem' => 'usuário logado','usuario' => "funcionario");
+                $_SESSION['funcionario'] = true;
             }
         }
     }
@@ -35,19 +34,15 @@ if (!(empty($usuario) or empty($senha))) // testa se os campos do formulário n�
 		$_SESSION['nome'] = $tipoUsuario['nome'];
 		$_SESSION['login'] = $tipoUsuario['login'];
         $_SESSION['admin'] = $tipoUsuario['admin'];
-    } else
-    {
-        session_destroy();
     }
     if($tipoUsuario==null)
     {
-        $retorno = array('sucesso' => false, 'null'=> true, 'mensagem' => 'inexistente no banco');
+        $retorno = array('sucesso' => false, 'null'=> false, 'mensagem' => 'inexistente no banco');
     }
 
   
-} else
+} else {
     $retorno = array('sucesso' => false, 'null'=> false, 'mensagem' => 'campos vazios');
 }
-
 echo json_encode($retorno);
 ?>

@@ -114,3 +114,11 @@ div.cadastro {
 #attForm_funcionario {
     display: none;
 }
+
+.btn-outline-light:hover {
+    color: #212529;
+    border-color: red;
+}
+.btn {
+    transition-duration: .5s;
+}

@@ -1,14 +1,15 @@
 <?php
 session_start(); 
 
-		if(isset($_SESSION["cliente"])==true)
-		{
-			$retorno = array('sucesso'=>true,'mensagem'=>'usuário logado');
-		} 
-		else 
-		{ 
-			$retorno = array('sucesso'=>false,'mensagem'=>'usuário inválido');
-		}
-
+if(isset($_SESSION["nome"])==true)
+{
+    $retorno = array('sucesso'=>true,'mensagem'=>'usuário logado');
+} 
+else 
+{ 
+    $retorno = array('sucesso'=>false,'mensagem'=>'usuário inválido');
+}
 echo json_encode($retorno);
+
+
 ?>

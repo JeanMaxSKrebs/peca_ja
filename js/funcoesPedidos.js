@@ -7,13 +7,18 @@ function pedido(arrayPedido) {
     arrayPedido.forEach(item => {
 
         const div = document.createElement("div")
-
+        div.style.backgroundColor = "#8FBC8F"
+        div.style.border = "solid 1px rgba(0,0,0,0.125)"
+        div.style.margin = "0 20vw"
         div.innerHTML = item.nome + item.valor
         resultado.appendChild(div)
     })
     let button = document.createElement("input")
     button.type = "submit"
+    button.value = "Enviar Pedido"
+    button.setAttribute('class', 'btn btn-success')
     button.onclick = function() {
+        
         $.ajax({
             type: 'POST',
             url: "../crud/crudPedidos/envia.php",
@@ -21,38 +26,26 @@ function pedido(arrayPedido) {
             // success: function(){alert("ok")},
             // error: function(){alert("erro")}
         });
-        }
+    }
+    let envia = document.createElement("input")
+    
+    envia.value = "Apagar Pedido"
+    envia.type = "submit"
+    envia.setAttribute("class", "btn btn-danger mr-1")
+    button.onclick = function() {
+        exclui()
+    }
+        
+    resultado.appendChild(envia)
     resultado.appendChild(button)
-
-
 }
 
-function exclui() {
+function exclui(){
     event.preventDefault()
     let resultado = document.getElementById("resultado")
     resultado.innerHTML = ""
 
     arrayPedido = []
-}
-
-function envia() {
-    event.preventDefault()
-
-    let resultado = document.getElementById("resultado")
-    resultado.innerHTML = ""
-
-    let url = '../crud/crudPedidos/envia.php'
-    console.log(`Conectando a ${url}`)
-
-    axios.post(url)
-        .then(resp => {
-            console.log('Recebendo dados!')
-        })
-        .catch(error => {
-            console.log(`Erro ao conectar: \n\n${error.message}`)
-            console.log(error)
-        });
-    pedidoProdutos = []
 }
 
 function exibePedidos() {
@@ -70,7 +63,7 @@ function exibePedidos() {
             let i = 0
             let id = 0
             var row = document.createElement("div")
-            row.setAttribute("class", "row justify-content-center mt-3")
+            row.setAttribute("class", "row justify-content-center")
             grid.appendChild(row)
 
             // console.log(resp.data)
@@ -80,13 +73,13 @@ function exibePedidos() {
                 // console.log(Object.values(obj))
                 if (i == 3) {
                     row = document.createElement("div")
-                    row.setAttribute("class", "row justify-content-center mt-3")
+                    row.setAttribute("class", "row justify-content-center")
                     grid.appendChild(row)
                     i = 0
                 }
 
                 let col = document.createElement("div")
-                col.setAttribute("class", "card col-sm-12 col-md-3 ml-3 mr-3")
+                col.setAttribute("class", "card col-sm-12 col-md-3 m-3")
                 col.style.backgroundColor = "#8FBC8F";
                 col.style.padding = "10px"
 
@@ -126,6 +119,7 @@ function exibePedidos() {
             console.log(error)
         });
 }
+//site_funcionario
 let listaPedidos = []
 
 function mostraPedidos(){

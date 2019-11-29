@@ -1,14 +1,18 @@
 <?php
-session_start(); 
+
+
+	function valida_sessao(){
+		session_start(); 
 
 		if(isset($_SESSION["nome"])==true)
 		{
-			$retorno = array('sucesso'=>true,'mensagem'=>'usuário logado');
-		} 
-		else 
-		{ 
-			$retorno = array('sucesso'=>false,'mensagem'=>'usuário inválido');
+			return true;
 		}
+		else
+		{
+			return false;
+		}
+	}
 
-echo json_encode($retorno);
+
 ?>
