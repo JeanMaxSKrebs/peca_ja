@@ -236,8 +236,6 @@ function exibirProdutos() {
                     // console.log(arrayPedido)
                     arrayPedido.push(obj)
                     pedido(arrayPedido)
-                    // document.cookie = JSON.stringify(arrayPedido)
-                    // console.log(document.cookie)
                 }
 
                 id++

@@ -1,6 +1,5 @@
 <?php
 
-
 	function valida_sessao(){
 		session_start(); 
 
@@ -13,6 +12,5 @@
 			return false;
 		}
 	}
-
 
 ?>

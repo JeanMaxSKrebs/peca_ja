@@ -1,14 +1,13 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
-require_once('conection.php');
+require_once('../servicos/conection.php');
 require_once('functions.php');
-require_once('valida_sessao.php')
+// require_once('valida_sessao.php')
 
-    if(valida_sessao()==true)
-    {
-        $array=json_decode($_POST['dados']);
-        
+        $array=json_decode($_POST['data']);
+        print_r($array);
+        var_dump($array);die;
         $pedido = [];
         $valor_tot = 0;
         
@@ -35,7 +34,6 @@ require_once('valida_sessao.php')
             $verifica = 'false';
         }
         echo json_encode($verifica);
-    }
     
 
 ?>

@@ -13,33 +13,38 @@ function pedido(arrayPedido) {
         div.innerHTML = item.nome + item.valor
         resultado.appendChild(div)
     })
-    let button = document.createElement("input")
-    button.type = "submit"
-    button.value = "Enviar Pedido"
-    button.setAttribute('class', 'btn btn-success')
-    button.onclick = function() {
-        
-        $.ajax({
-            type: 'POST',
-            url: "../crud/crudPedidos/envia.php",
-            data: {dados: JSON.stringify(arrayPedido)}
-            // success: function(){alert("ok")},
-            // error: function(){alert("erro")}
-        });
-    }
     let envia = document.createElement("input")
-    
-    envia.value = "Apagar Pedido"
     envia.type = "submit"
-    envia.setAttribute("class", "btn btn-danger mr-1")
-    button.onclick = function() {
+    envia.value = "Enviar Pedido"
+    envia.setAttribute('class', 'btn btn-success')
+    envia.onclick = function() {
+        teste()
+    }
+    let apaga = document.createElement("input")
+    
+    apaga.value = "Apagar Pedido"
+    apaga.type = "submit"
+    apaga.setAttribute("class", "btn btn-danger mr-1")
+    apaga.onclick = function() {
         exclui()
     }
         
+    resultado.appendChild(apaga)
     resultado.appendChild(envia)
-    resultado.appendChild(button)
 }
+function teste(){
 
+    let url = '../crud/crudPedidos/envia.php'
+    
+    console.log(`Conectando a ${url}`)
+        
+    data = JSON.stringify(arrayPedido)
+    
+    axios.get(url, data)
+    .then(resp => {
+        alert("Oi")
+    })
+}
 function exclui(){
     event.preventDefault()
     let resultado = document.getElementById("resultado")
