@@ -1,5 +1,5 @@
 <?php
-require_once('../servicos/conection.php');
+require_once('..\..\servicos\conection.php');
 function insertProdutosPhp($conection, $array)
 {
     try {
