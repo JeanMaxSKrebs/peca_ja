@@ -210,7 +210,7 @@ function exibirProdutos() {
 
                 let col = document.createElement("div")
                 col.setAttribute("class", "card col-sm-12 col-md-3 m-3")
-                col.style.backgroundColor = "#b3dee3";/*8FBC8F*/
+                col.style.backgroundColor = "#ffcf3e";
                 col.style.padding = "10px"
 
                 let div = document.createElement("div")

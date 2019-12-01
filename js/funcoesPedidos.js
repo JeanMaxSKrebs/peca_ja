@@ -7,9 +7,10 @@ function pedido(arrayPedido) {
     arrayPedido.forEach(item => {
 
         const div = document.createElement("div")
-        div.style.backgroundColor = "#8FBC8F"
+        div.style.backgroundColor = "#f9f4c6"
         div.style.border = "solid 1px rgba(0,0,0,0.125)"
-        div.style.margin = "0 20vw"
+        div.style.margin = "5px 20vw"
+        div.style.borderRadius = "10px"
         div.innerHTML = item.nome + item.valor
         resultado.appendChild(div)
     })
@@ -18,7 +19,7 @@ function pedido(arrayPedido) {
     envia.value = "Enviar Pedido"
     envia.setAttribute('class', 'btn btn-success')
     envia.onclick = function() {
-        teste()
+        enviaPedido()
     }
     let apaga = document.createElement("input")
     
@@ -32,7 +33,7 @@ function pedido(arrayPedido) {
     resultado.appendChild(apaga)
     resultado.appendChild(envia)
 }
-function teste(){
+function enviaPedido(){
 
     let url = '../crud/crudPedidos/envia.php'
 
@@ -87,7 +88,7 @@ function exibePedidos() {
 
                 let col = document.createElement("div")
                 col.setAttribute("class", "card col-sm-12 col-md-3 m-3")
-                col.style.backgroundColor = "#8FBC8F";
+                col.style.backgroundColor = "red";
                 col.style.padding = "10px"
 
                 let div = document.createElement("div")
@@ -150,8 +151,7 @@ function mostraPedidos(){
 
             listaPedidos.forEach(obj => {
                 var row = document.createElement("div")
-                row.style.backgroundColor = "#8FBC8F";
-                // row.style.backgroundColor = "#FFE4C4";
+                row.style.backgroundColor = "#ffcf3e";
                 row.setAttribute("class", "row")
                 row.style.border = "solid 1px"
                 row.style.padding = "5px"
@@ -170,8 +170,8 @@ function mostraPedidos(){
                 })
                 
                 let info = document.createElement("button")
-                info.textContent = "ℹ️"
-                info.setAttribute("class", "btn btn-light")
+                info.textContent = "💬"
+                info.setAttribute("class", "btn btn-outline-warning")
                 info.onclick = function () {
                     let modalPedido = modalBuscaProdutos(obj)
                     let body = document.querySelector('body')
@@ -212,7 +212,7 @@ function buscaProdutos(codigoPedido)
             // console.log(produtosDoPedido)
             produtosDoPedido.forEach(obj => {
                 var row = document.createElement("div")
-                row.style.backgroundColor = "#8FBC8F";
+                row.style.backgroundColor = "#8bcc89";
                 row.setAttribute("class", "row")
                 row.style.border = "solid 1px"
                 row.style.padding = "5px"
@@ -241,10 +241,11 @@ function modalBuscaProdutos(obj){
     let conteudo = document.createElement("div")
     conteudo.setAttribute("class", "container")
     conteudo.style.marginTop = "25vh"
-    conteudo.style.backgroundColor = "#ed9a3e"
+    conteudo.style.backgroundColor = "#f9f4c6"
     conteudo.style.width = "50vw"
-    conteudo.style.overflowY = "scroll"
+    conteudo.style.overflowY = "auto"
     conteudo.style.height = "50vh"
+    conteudo.style.borderRadius = ".25rem"
 
     let produtos = buscaProdutos(Object.values(obj)[0])
     
