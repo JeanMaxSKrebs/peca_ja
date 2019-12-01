@@ -35,14 +35,16 @@ function pedido(arrayPedido) {
 function teste(){
 
     let url = '../crud/crudPedidos/envia.php'
-    
+
     console.log(`Conectando a ${url}`)
         
-    data = JSON.stringify(arrayPedido)
+    var formData = new FormData();
     
-    axios.get(url, data)
+    formData = JSON.stringify(arrayPedido)
+
+    axios.post(url, formData)
     .then(resp => {
-        alert("Oi")
+
     })
 }
 function exclui(){

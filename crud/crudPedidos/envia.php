@@ -5,9 +5,8 @@ require_once('..\..\servicos\conection.php');
 require_once('functions.php');
 // require_once('valida_sessao.php')
 
-        $array=json_decode($_POST['data']);
-        print_r($array);
-        var_dump($array);die;
+        $array = json_decode(file_get_contents("php://input"));
+
         $pedido = [];
         $valor_tot = 0;
         
