@@ -1,17 +1,24 @@
 <?php
-require_once('conection.php');
+require_once('..\..\servicos\conection.php');
 
-// function pedido($conection, $array){
-    
-//     try {
-//         $query = $conection->prepare("insert into pedidos(cod_clientes, valor_total, ) values (?, ?)");
-//         $result = $query->execute($array);
-//         return $result;
-//     } catch (PDOException $e) {
-//         echo 'Error: ' . $e->getMessage();
-//     }
-// }
+setlocale(LC_ALL, 'pt_BR','pt_BR.utf-8','pt_BR.utf-8','portuguese');
+date_default_timezone_set('America/Sao_Paulo');
+function connect(){
+    try{
+        $conection = new PDO("pgsql:host=localhost;dbname=site;user=postgres;password=1234");
+        $conection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        return $conection;
+    }
+    catch(PDOException $ex){
+        echo("Deu erro! <br>". $ex->getMessage());
+        return false;
+    }
+}
+function isAssoc(array $arr){
+    if (array() === $arr) return false;
+    return array_keys($arr) !== range(0, count($arr) - 1);
+}
 
 function insertPedidoProduto($pedido, $returnid = false){
     // print_r($pedido);
@@ -108,7 +115,56 @@ function pedidoProduto(array $commands, array $multi_parameters, $sequence = NUL
     }
     
 }
+
+function mostraPedido($conection){
+    try {
+        $query = $conection->prepare("
+        select cod_pedidos, count(*) as produtos, nome 
+        from pedido_produto 
+        join pedidos on(pedidos.codigo=pedido_produto.cod_pedidos)
+        join clientes on(clientes.codigo=pedidos.cod_clientes) 
+        where not exists (select * from pedidos where pedido_produto.cod_pedidos=pedidos.codigo and status = 'Em Andamento')
+        group by cod_pedidos, nome;");
+
+        // select cod_pedidos, count(*) from pedido_produto group by cod_pedidos
+
+
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    } catch (PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
+}
+
+function buscaProduto($conection, $array){
+    try {
+        $query = $conection->prepare("select produtos.nome, pp.cod_produto from produtos inner join pedido_produto pp
+        on(produtos.codigo=pp.cod_produto) inner join pedidos on(pp.cod_pedidos=pedidos.codigo)
+        where cod_pedidos = ?");
+
+        $query->execute($array);
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    } catch (PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
+}
 // public PDO::lastInsertId ([ string $name = NULL ] ) : string
 
+function insereFuncionarioPedido($conection, $array){
 
+    try {
+        $query = $conection->prepare("update pedidos set cod_func = ?, status = 'Em Andamento' where codigo = ?");
+        
+        $query->execute($array);
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $result;
+    } catch (PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
+}
 ?>

@@ -1,9 +1,8 @@
 <?php  
 header('Access-Control-Allow-Origin: *');
 
-require_once('conection.php');
+require_once('..\..\servicos\conection.php');
 require_once('functions.php');
-
 
 $resultado = produtoClientePhp($conection);
 

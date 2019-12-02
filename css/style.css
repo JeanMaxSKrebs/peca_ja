@@ -8,11 +8,14 @@ body {
     background-image: url("../imagens/sandubinha_bg.png");
     background-repeat: initial;
     background-color: #FFE4C4;
+    /* background-color: red; */
 }
-
+h1, h2, h5{
+    color: white;
+}
 .jumbotron {
     background-repeat: initial;
-    background-color: #ed9a3e;
+    background-color: #b82222;
 }
 
 div.login {
@@ -22,14 +25,37 @@ div.login {
 }
 
 div.cadastro {
-    margin-top: 10%;
-    width: 35%;
+    margin-top: 3vh;
+    width: 50vh;
     height: 40vh;
     display: inline-block;
 }
 
 
 /*modais*/
+
+#perfilBG{
+    position: fixed;
+    display: none;
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+}
+
+#modalPerfil{
+    margin-top: 20vh;
+    background-color:#4b4f75;
+    z-index: 3;
+    width: 70vw;
+    height: 65vh;
+    border-radius: 6px;
+    margin-left: 15vw;
+    box-shadow: black;
+}
+
+#modal_cliente{
+    display: none;
+}
 
 #add_func {
     text-align: inherit;
@@ -89,4 +115,20 @@ div.cadastro {
 
 #attForm_funcionario {
     display: none;
+}
+
+/* alteraçoes bootstrap */
+
+.btn-outline-warning{
+    background-color: rgb(249, 244, 198);
+}
+
+.btn-warning{
+    background-color: rgb(255, 202, 42);
+}
+.btn-outline-warning-2{
+    background-color: rgb(252, 249, 88)
+}
+.btn-outline-light:hover{
+    background-color: rgb(249, 244, 198);
 }

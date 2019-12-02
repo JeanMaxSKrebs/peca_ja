@@ -5,7 +5,7 @@
 -- Dumped from database version 10.9
 -- Dumped by pg_dump version 11.2
 
--- Started on 2019-11-22 08:36:54
+-- Started on 2019-11-22 17:41:54
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -59,7 +59,8 @@ CREATE TABLE public.clientes (
     nome character varying(32),
     cpf character(11),
     login character varying(56),
-    senha character varying(24)
+    senha character varying(24),
+    admin boolean
 );
 
 
@@ -93,7 +94,8 @@ CREATE TABLE public.funcionarios (
     endereco character varying(50),
     cpf character(11),
     login character varying(56),
-    senha character varying(24)
+    senha character varying(24),
+    admin boolean
 );
 
 
@@ -217,10 +219,13 @@ COPY public.categorias (codigo, tipo) FROM stdin;
 -- Data for Name: clientes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.clientes (codigo, nome, cpf, login, senha) FROM stdin;
-1	admin	0          	admin	admin
-2	cliente	1          	cli	cli
-9	teste	04506635078	admina	cli12
+COPY public.clientes (codigo, nome, cpf, login, senha, admin) FROM stdin;
+2	cliente	1          	cli	cli	f
+1	admin	0          	admin	admin	t
+9	teste	04506635078	admina	cli12	f
+13	clie	           	jeanskrebs@gmail.com	cliente	f
+14	cliente	           	jeanskrebs@gmail.com	cliente	f
+15	jean	           	jeanskrebs@gmail.com	cliente	f
 \.
 
 
@@ -230,15 +235,15 @@ COPY public.clientes (codigo, nome, cpf, login, senha) FROM stdin;
 -- Data for Name: funcionarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.funcionarios (codigo, nome, salario, tipo, endereco, cpf, login, senha) FROM stdin;
-1	josé	1000.00	comum	avenida das palmeiras	09508530558	jose	jose
-3	funcionario	\N	\N	\N	           	funcionario	funcionario
-11	teste	650.00	on	joão	45860820554	joao	\N
-12	teste	0.00	on	aaa	1          	admaa	\N
-13	teste	101.00	on	jean	04506635078	jean	\N
-15	danilo	1000.00	gerente	\N	04506635078	danilo	danilo
-19	teste4	300.00	gerente	Rua Barão da Conceição	04506635078	teste4	admin
-20	teste5	100.00	comum	Avenida Campina, 696-01	04506635078	teste5	admin
+COPY public.funcionarios (codigo, nome, salario, tipo, endereco, cpf, login, senha, admin) FROM stdin;
+1	josé	1000.00	comum	avenida das palmeiras	09508530558	jose	jose	f
+3	funcionario	\N	\N	\N	           	funcionario	funcionario	f
+11	teste	650.00	on	joão	45860820554	joao	\N	f
+12	teste	0.00	on	aaa	1          	admaa	\N	f
+13	teste	101.00	on	jean	04506635078	jean	\N	f
+15	danilo	1000.00	gerente	\N	04506635078	danilo	danilo	f
+19	teste4	300.00	gerente	Rua Barão da Conceição	04506635078	teste4	admin	f
+20	teste5	100.00	comum	Avenida Campina, 696-01	04506635078	teste5	admin	f
 \.
 
 
@@ -253,6 +258,15 @@ COPY public.pedido_produto (cod_produto, cod_pedidos, "observação", quantidade
 65	32	\N	\N
 63	33	\N	\N
 65	33	\N	\N
+63	35	\N	\N
+68	35	\N	\N
+67	35	\N	\N
+63	36	\N	\N
+68	36	\N	\N
+67	36	\N	\N
+63	37	\N	\N
+68	37	\N	\N
+67	37	\N	\N
 \.
 
 
@@ -291,6 +305,9 @@ COPY public.pedidos (codigo, cod_clientes, cod_func, data_pedido, valor_total, s
 26	\N	\N	\N	\N	\N
 32	1	\N	\N	70.00	\N
 33	1	\N	\N	70.00	\N
+35	1	\N	\N	102.00	\N
+36	1	\N	\N	102.00	\N
+37	1	\N	\N	102.00	\N
 \.
 
 
@@ -339,7 +356,7 @@ SELECT pg_catalog.setval('public.categorias_codigo_seq', 12, true);
 -- Name: clientes_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.clientes_codigo_seq', 12, true);
+SELECT pg_catalog.setval('public.clientes_codigo_seq', 15, true);
 
 
 --
@@ -357,7 +374,7 @@ SELECT pg_catalog.setval('public.funcionarios_codigo_seq', 20, true);
 -- Name: pedidos_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.pedidos_codigo_seq', 34, true);
+SELECT pg_catalog.setval('public.pedidos_codigo_seq', 37, true);
 
 
 --
@@ -468,7 +485,7 @@ ALTER TABLE ONLY public.produtos
     ADD CONSTRAINT produtos_cod_categorias_fkey FOREIGN KEY (cod_categorias) REFERENCES public.categorias(codigo);
 
 
--- Completed on 2019-11-22 08:36:57
+-- Completed on 2019-11-22 17:41:57
 
 --
 -- PostgreSQL database dump complete

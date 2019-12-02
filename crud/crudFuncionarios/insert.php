@@ -1,7 +1,7 @@
 <?php  
 header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
-require_once('conection.php');
+require_once('..\..\servicos\conection.php');
 require_once('functions.php');
 
 
@@ -16,7 +16,6 @@ $array = [$obj->nome, $obj->salario, $obj->tipo, $obj->endereco, $obj->cpf, $obj
 //$resultado = var_dump($array);
 
 $resultado = insertFuncionariosPhp($conection, $array);
-//echo $obj->quant;
 
 if($resultado)
 {
