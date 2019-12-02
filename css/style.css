@@ -44,13 +44,13 @@ div.cadastro {
 
 #modalPerfil{
     margin-top: 20vh;
-    background-color:#b3dee3;
+    background-color:#4b4f75;
     z-index: 3;
     width: 70vw;
     height: 65vh;
     border-radius: 6px;
     margin-left: 15vw;
-    box-shadow: gray;
+    box-shadow: black;
 }
 
 #modal_cliente{

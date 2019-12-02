@@ -118,8 +118,13 @@ function pedidoProduto(array $commands, array $multi_parameters, $sequence = NUL
 
 function mostraPedido($conection){
     try {
-        $query = $conection->prepare("select cod_pedidos, count(*) as produtos from pedido_produto 
-        group by cod_pedidos;");
+        $query = $conection->prepare("
+        select cod_pedidos, count(*) as produtos, nome 
+        from pedido_produto 
+        join pedidos on(pedidos.codigo=pedido_produto.cod_pedidos)
+        join clientes on(clientes.codigo=pedidos.cod_clientes) 
+        where not exists (select * from pedidos where pedido_produto.cod_pedidos=pedidos.codigo and status = 'Em Andamento')
+        group by cod_pedidos, nome;");
 
         // select cod_pedidos, count(*) from pedido_produto group by cod_pedidos
 
@@ -152,7 +157,7 @@ function buscaProduto($conection, $array){
 function insereFuncionarioPedido($conection, $array){
 
     try {
-        $query = $conection->prepare("update pedidos set cod_func = ?, status = 'Em Andamento' where codigo = ? order by codigo");
+        $query = $conection->prepare("update pedidos set cod_func = ?, status = 'Em Andamento' where codigo = ?");
         
         $query->execute($array);
         $result = $query->fetchAll(PDO::FETCH_ASSOC);

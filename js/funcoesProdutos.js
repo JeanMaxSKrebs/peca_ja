@@ -18,7 +18,7 @@ function mostraProdutos() {
             let table = '<table>'
             table += '<tr><td>Produtos</td></tr>'
             table += '<tr>'
-            table += '<td>Codigo</td><td>Tipo</td><td>Nome</td><td>Valor</td><td>Desconto</td>'
+            table += '<td>Codigo</td><td>Tipo</td><td>Nome</td><td>Valor</td>'
             table += '</tr>'
             resp.data.forEach(obj => {
                 console.log(obj)
@@ -43,11 +43,10 @@ function insertProdutosJs() {
     resultado.innerHTML = '' //seta a div de resultado como vazia
     let nome = insertProdutos.nome.value
     let valor = insertProdutos.valor.value
-    let desconto = insertProdutos.desconto.value
     let categoria = insertProdutos.categoria.value
     let imagem = insertProdutos.imagem.src
     console.log(imagem)
-    let produtos = new Produtos(nome, valor, desconto, categoria, imagem) //instancia um novo objeto usando o construtor
+    let produtos = new Produtos(nome, valor, categoria, imagem) //instancia um novo objeto usando o construtor
     let url = '../crud/crudProdutos/insert.php'
     console.log(`Conectando a ${url}`)
     axios.post(url, JSON.stringify(produtos))
@@ -56,7 +55,6 @@ function insertProdutosJs() {
             resultado.innerHTML = "SUCESSO"
             insertProdutos.nome.value = ''
             insertProdutos.valor.value = ''
-            insertProdutos.desconto.value = ''
             insertProdutos.categoria.value = ''
             insertProdutos.imagem.value = ''
         })
@@ -76,7 +74,6 @@ function alterProdutosJs() {
             alterProdutos.style.display = 'block'
             attProdutos.nome.value = resp.data.nome
             attProdutos.valor.value = resp.data.valor
-            attProdutos.desconto.value = resp.data.desconto
             attProdutos.categoria.value = resp.data.cod_categorias
             attProdutos.imagem.src = resp.data.imagem
         })
@@ -90,11 +87,10 @@ function attProdutosJs() {
     let busca = alterProdutos.busca.value
     let nome = attProdutos.nome.value
     let valor = attProdutos.valor.value
-    let desconto = attProdutos.desconto.value
     let categoria = attProdutos.categoria.value
     let imagem = attProdutos.imagem.src
 
-    let produtosAtt = new Produtos(nome, valor, desconto, categoria, imagem, busca) //instancia um novo objeto usando o construtor
+    let produtosAtt = new Produtos(nome, valor, categoria, imagem, busca) //instancia um novo objeto usando o construtor
     let url = '../crud/crudProdutos/alter.php'
     console.log(`Conectando a ${url}`)
     axios.post(url, JSON.stringify(produtosAtt))
@@ -226,6 +222,7 @@ function exibirProdutos() {
 
                 let imagem = document.createElement("img")
                 imagem.src = Object.values(obj)[2]
+                imagem.style.borderRadius = "200px"
                 imagem.width = 100
                 imagem.height = 100
 
@@ -255,11 +252,10 @@ function exibirProdutos() {
 }
 
 //construtor usado no insert
-var Produtos = function(nome, valor, desconto, categoria, imagem, busca) {
+var Produtos = function(nome, valor, categoria, imagem, busca) {
     this.busca = busca;
     this.nome = nome;
     this.valor = valor;
-    this.desconto = desconto;
     this.categoria = categoria;
     this.imagem = imagem;
 }

@@ -19,7 +19,8 @@ require_once('functions.php');
             $produto['codigo'] = $codigo;
             $pedido['produtos'][] =  $produto;
         }
-        $pedido['cod_clientes'] = 1;
+        session_start();
+        $pedido['cod_clientes'] = $_SESSION['codigo'];
         $pedido['valor_total'] = $valor_tot;
         
         $resultado = insertPedidoProduto($pedido, true);

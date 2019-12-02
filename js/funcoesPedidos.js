@@ -45,7 +45,8 @@ function enviaPedido(){
 
     axios.post(url, formData)
     .then(resp => {
-
+        alert("sucesso")
+        exclui()
     })
 }
 function exclui(){
